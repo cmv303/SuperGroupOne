@@ -1,7 +1,7 @@
 # SuperGroupOne
 
 ##PROJECT TITLE
-  MusicAlly
+  LyricAlly
   
 ##PROJECT DESCRIPTION
 
