@@ -1,25 +1,16 @@
 // youtube API key
-const APIKey = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4"
-//example 
-var youTube = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=dogs&type=video&key=AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4"
+const key = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4"
 
-fetch(youTube)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-        displayYouTube(data);
-      })
 
-    function displayYouTube(data){
-    console.log(data.items[0].id.videoId);
-    // need a for loop to get multiple videoIds
-    var video = data.items[0].id.videoId;
-    var videoURL = "https://www.youtube.com/watch?v=" + video;
-    //creates a url we can plug into the iframe src 
-    //need to look into iframe stuff because it throws an error when I try to display
-    console.log(videoURL); 
+function displayYouTube(ytList){
+  $("#resultsList").empty("")
+  var list = $("<ul>")
+  for (let i = 0; i < ytList.length; i++) {
+    var listItem = $("<li>")
+    listItem.text(ytList[i].snippet.title)
+    list.append(listItem) 
+  }
+$("#resultsList").append(list)
 }
 
 // Examples so I don't forget 
@@ -29,3 +20,28 @@ fetch(youTube)
 // Accept: application/json
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
+function youTubeAPI(input){
+
+var youTube = "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+ input +"&type=video&key="+ key
+fetch(youTube)
+.then(function (response) {
+  return response.json();
+})
+.then(function (data) {
+  console.log(data);
+  console.log(data.items[0].id.videoId);
+  displayYouTube(data.items);
+});
+
+}
+
+
+$("button").on("click", function( ){
+  var input = $("#videoId").val()
+  console.log("click ", input)
+  $("#youtube-title").empty()
+  $("#youtube-title").text(input)
+  youTubeAPI(input)
+}) 
+
+// function displayYouTube(){}
