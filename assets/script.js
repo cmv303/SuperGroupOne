@@ -10,6 +10,10 @@ var youTube = "https://www.googleapis.com/youtube/v3/search?part=snippet&q=dogs&
 // Accept: application/json
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
+$("button").on("click", function( ){
+  console.log("click ",this.value)
+})
+var input = $("#videoId").value 
 
 fetch(youTube)
       .then(function (response) {
