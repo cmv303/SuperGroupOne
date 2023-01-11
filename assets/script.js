@@ -39,6 +39,8 @@ fetch(youTube)
 $("button").on("click", function( ){
   var input = $("#videoId").val()
   console.log("click ", input)
+  $("#youtube-title").empty()
+  $("#youtube-title").text(input)
   youTubeAPI(input)
 }) 
 
