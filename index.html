@@ -37,8 +37,18 @@
         <!-- where songs that are selected from the results list can be played directly
         from youtube -->
     </div>
-
-    <script src="./assets/script.js"></script>
-</body>
+      </div>
+      <div id="buttons">
+        <label>Current Playlist Id: <input id="playlist-id" value='' type="text"/></label>
+        <br>
+        <label>Video Id: <input id="video-id" value='example' type="text"/></label><button onclick="Videoarea()">play current video</button>
+      </div>
+      <h3>Playlist: <span id="playlist-title"></span></h3>
+      <p id="playlist-description"></p>
+      <div id="playlist-container">
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="./assets/script.js" type=" text/javascript" ></script>
+    </body>
 
 </html>
