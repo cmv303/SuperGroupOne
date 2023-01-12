@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems);
@@ -40,13 +41,14 @@ function youTubeAPI(input) {
     });
 }
 
-$("button").on("click", function () {
-  var input = $("#videoId").val();
-  console.log("click ", input);
-  $("#youtube-title").empty();
-  $("#youtube-title").text(input);
-  youTubeAPI(input);
-});
+
+$("#searchBtn").on("click", function( ){
+  var input = $("#Search").val()
+  console.log("click ", input)
+  $("#youtube-title").empty()
+  $("#youtube-title").text(input)
+  youTubeAPI(input)
+}) 
 
 // function displayYouTube(){}
 
