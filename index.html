@@ -54,6 +54,27 @@
   <div id="searchBar">
     <!-- will use the API/s within the search bar to display results -->
   </div>
+    <aside>
+        <!-- a list of keywords from local storage displayed here -->
+        <ul>
+            <li></li>
+        </ul>
+        <section name="searchFiltersForm" id="searchFiltersForm" style="display:block;" class="filtersFormDefaultColor" href="#">
+            <label>
+                <input type="checkbox" name="SearchGenre" id="SearchGenre" priorvalue=""><span>Search Genre</span></label>
+
+                <label><input type="checkbox" name="SearchArtist" id="SearchArtist" priorvalue=""> <span>Search Artist
+
+                </span></label>
+                    <button id="filterApplyButton">Apply Filters</button>
+                
+            
+        </section>
+    </aside>
+
+    <div id="searchBar">
+        <!-- will use the API/s within the search bar to display results -->
+    </div>
 
   <div class="row" id="videoArea">
 
@@ -70,6 +91,12 @@
       
   <div class="col s4" id="resultsList"> Results list
     <!-- display results from fetch requests -->
+    </div>
+    </div>
+    
+
+    <div id="resultsList">
+        <!-- display results from fetch requests -->
 
   </div>
 </div>
