@@ -60,7 +60,6 @@ let selectedArtistArr = [];
 function searchGenre() {
   $("#filterApplyButton").show();
   let genre = $("#searchGenre").prop("checked");
-  let artist = $("#searchArtist").prop("checked");
   let priorGenreSearched = $("#searchPriorGenre").attr("priorvalue");
   if (genre) {
     selectedGenreArr.push(["add", "filter", "SEARCH_GENRE"]);
@@ -71,14 +70,15 @@ function searchGenre() {
   // searchGenre();
 console.log(1);
   function searchArtist() {
-    let priorArtistSearched = $("#searchPriorAritst").attr("priorvalue");
+    let artist = $("#searchArtist").prop("checked");
+    let priorArtistSearched = $("#searchPriorArtist").attr("priorvalue");
     if (artist) {
       selectedArtistArr.push(["add", "filter", "SEARCH_ARTIST"]);
     } else if (artist != priorArtistSearched) {
       selectedArtistArr.push(["delete", "filter", "SEARCH_ARTIST"]);
     }
   }
-  console.log(2)
+  console.log(2);
   // searchArtist();
 
   function filtersImplemented(e) {
