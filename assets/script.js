@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elems);
+  });
 // youtube API key
 const key = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4";
 

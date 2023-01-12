@@ -11,13 +11,41 @@
     <title>LyricAlly</title>
 </head>
 <header>
-    <nav>
-        <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
-        </ul>
-    </nav>
+     <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"> <img class="responsive-img" src="./assets/images/LyricAllyLogo.jpg"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li class="active"><a href="about.html">About</a></li>
+        <li class="active"><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="row">
+    <div class="input-field col 12">
+      <input placeholder="Search Your LyricAlly" id="Search" type="text">
+      <a class="waves-effect waves-light btn">button</a>
+      <label class="active" for="first_name2"></label>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <iframe width="400" height="400" src="//www.youtube.com" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="./assets/images/LyricAllyLogo.jpg">
+      </div>
+      <a href="#user"><img class="circle" src="./assets/images/LyricAllyLogo.jpg"></a>
+      <a href="#name"><span class="white-text name">LyricAlly</span></a>
+      <a href="#email"><span class="white-text email">LyricAlly@go.go</span></a> 
+      <!-- will update website when it is built on github -->
+    </div></li>
+  </ul>
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 </header>
 
 <body>
@@ -44,6 +72,8 @@
         <!-- where songs that are selected from the results list can be played directly
         from youtube -->
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/script.js"></script>
     </div>
     <div id="button">
         <label>Search:<input id="videoId" value='type here' type="text" /></label><button>play current video</button>

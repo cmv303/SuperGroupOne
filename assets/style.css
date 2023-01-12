@@ -1,6 +1,18 @@
-* { 
-    box-sizing: border-box;
-     /*universal CSS options  */
+* {
+     background-color: cadetblue;
+     box-sizing: border-box;
+}
+.brand-logo {
+     width: 100px;
+     align-items: center;
+     display: block;
+}
+.row {
+     display: flex;
+     justify-content: center;
+}
+.responsive-img {
+     align-items: center;
 }
 
 
