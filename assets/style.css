@@ -3,27 +3,51 @@
      box-sizing: border-box;
 }
 body {
-     background-image: url(./images/LyricAllyLogo.jpg);
-     background-size:cover;
-     background-repeat: no-repeat;
+     background-color: #9cd6f8;
 
 }
 .nav-wrapper {
-     background-color: #26a69a;
-     display: flex;
+     background-color: linear-gradient(#26a69a);
+     background: linear-gradient(#26a69a, #9198e5);
+     
+    
+}
+::placeholder {
+     color: black;
+}
+.logo-Wrapper {
+     position: absolute;
+     left: 50%;
+     right: 50%;
+     transform: translate(-50%, -50%);
+     width: 125px;
+     border-radius: 8px;
 }
 a.brand-logo {
-     width: 125px;
+     width: 120px;
      align-items: center;
      display: flex;
+     
 }
 .row {
      display: flex;
      justify-content: center;
+     width: 80%;
 }
-.responsive-img {
+img.responsive-img {
      display: flex;
      align-items: center;
+     max-width: 100%;
+     height: 65px;
+     border-radius: 8px;
+}
+.col.s4 {
+     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+     font-size: 17px;
+     background: -webkit-linear-gradient(#26a69a, #9198e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 }
 
 
