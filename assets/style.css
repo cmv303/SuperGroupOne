@@ -1,5 +1,6 @@
 * {
      background-color: cadetblue;
+     box-sizing: border-box;
 }
 .brand-logo {
      width: 100px;
@@ -13,6 +14,7 @@
 .responsive-img {
      align-items: center;
 }
+
 
 @media screen { 
 /* need at 800px and 400px */
