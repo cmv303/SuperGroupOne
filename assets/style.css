@@ -5,10 +5,12 @@
 body {
      background-image: url(./images/LyricAllyLogo.jpg);
      background-size:cover;
-     background-repeat: no-repeat;    
+     background-repeat: no-repeat;
+
 }
 .nav-wrapper {
      background-color: #26a69a;
+     display: flex;
 }
 a.brand-logo {
      width: 125px;
