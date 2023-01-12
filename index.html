@@ -47,7 +47,19 @@
 </header>
 
 <body>
-      <div id="searchBar">
+    <aside>
+        <!-- a list of keywords from local storage displayed here -->
+        <ul>
+            <li></li>
+        </ul>
+        <section name="searchFiltersForm" id="searchFiltersForm" style="display:block;" class="filtersFormDefaultColor" href="#">
+            <input type="checkbox" name="SearchGenre" id="SearchGenre" priorvalue="">Search Genre<br>
+            <input type="checkbox" name="SearchArtist" id="SearchArtist" priorvalue="">Search Artist<br>
+            <button id="filterApplyButton">Apply Filters</button>
+        </section>
+    </aside>
+
+    <div id="searchBar">
         <!-- will use the API/s within the search bar to display results -->
     </div>
 
@@ -62,7 +74,6 @@
         <!-- where songs that are selected from the results list can be played directly
         from youtube -->
     </div>
-    
     </div>
     
 
