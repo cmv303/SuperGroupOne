@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems);
@@ -40,8 +41,8 @@ fetch(youTube)
 }
 
 
-$("button").on("click", function( ){
-  var input = $("#videoId").val()
+$("#searchBtn").on("click", function( ){
+  var input = $("#Search").val()
   console.log("click ", input)
   $("#youtube-title").empty()
   $("#youtube-title").text(input)

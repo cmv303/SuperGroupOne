@@ -1,17 +1,26 @@
 * {
-     background-color: cadetblue;
+     /* background-color: cadetblue;  */
      box-sizing: border-box;
 }
-.brand-logo {
-     width: 100px;
+body {
+     background-image: url(./images/LyricAllyLogo.jpg);
+     background-size:cover;
+     background-repeat: no-repeat;    
+}
+.nav-wrapper {
+     background-color: #26a69a;
+}
+a.brand-logo {
+     width: 125px;
      align-items: center;
-     display: block;
+     display: flex;
 }
 .row {
      display: flex;
      justify-content: center;
 }
 .responsive-img {
+     display: flex;
      align-items: center;
 }
 
