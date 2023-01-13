@@ -80,17 +80,22 @@
         <!-- will use the API/s within the search bar to display results -->
     </div>
 
-  <div class="row" id="videoArea">
-
-  
-  <div class="col s4">Playlist: <span id="playlist-title"></span></div class="col s4">
-  <div class="col s4">Videolist: <span id="youtube-title"></span></div class="col s4">
-  <!-- created an iframe to test youTube API javascript (HOPE)-->
-  
-  
-  <iframe frameBorder="0"class="col s4" width="400" height="315" src="">
-  </iframe>
-  <!-- where songs that are selected from the results list can be played directly
+    <div id="videoArea">
+      
+    </div>
+    <h3>Playlist: <span id="playlist-title"></span></h3>
+    <h4>Videolist: <span id="youtube-title"></span></h4>
+        <!-- created an iframe to test youTube API javascript (HOPE)-->
+      </div>
+        <div id="player"></div>
+        <script>
+          var tag = document.createElement('script');
+          tag.src = "https://www.youtube.com/iframe_api";
+          var firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        </script>
+      
+        <!-- where songs that are selected from the results list can be played directly
         from youtube -->
       
   <div class="col s4" id="resultsList"> Results list
