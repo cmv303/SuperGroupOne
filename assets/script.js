@@ -97,9 +97,8 @@ console.log(1);
       console.log(response);
     });
   }
-  filtersImplemented(e); //!Not working
-  e.addEventListener("click", filtersImplemented);
-}
+  //filtersImplemented(e); //!Not working
+  //e.addEventListener("click", filtersImplemented);
 
 // This function creates an <iframe> (and YouTube player)
 
