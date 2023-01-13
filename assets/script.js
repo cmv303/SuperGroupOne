@@ -64,31 +64,46 @@ console.log("top6")
 //functions for filterPanel
 let selectedGenreArr = [];
 let selectedArtistArr = [];
+let selectedLyricsArr = [];
 
-function searchGenre() {
+function searchByGenre() {
   $("#filterApplyButton").show();
-  let genre = $("#searchGenre").prop("checked");
+  let genreFilter = $("#searchByGenre").prop("checked");
   let priorGenreSearched = $("#searchPriorGenre").attr("priorvalue");
-  if (genre) {
-    selectedGenreArr.push(["add", "filter", "SEARCH_GENRE"]);
-  } else if (genre != priorGenreSearched) {
-    selectedGenreArr.push(["delete", "filter", "SEARCH_GENRE"]);
+  if (genreFilter) {
+    selectedGenreArr.push(["add", "filter", "SEARCH_BY_GENRE"]);
+  } else if (genreFilter != priorGenreSearched) {
+    selectedGenreArr.push(["delete", "filter", "SEARCH_BY_GENRE"]);
   }
 }
   // searchGenre();
 console.log(1);
 
-  function searchArtist() {
-    let artist = $("#searchArtist").prop("checked");
+  function searchByArtist() {
+    let artistFilter = $("#searchByArtist").prop("checked");
     let priorArtistSearched = $("#searchPriorArtist").attr("priorvalue");
-    if (artist) {
-      selectedArtistArr.push(["add", "filter", "SEARCH_ARTIST"]);
-    } else if (artist != priorArtistSearched) {
-      selectedArtistArr.push(["delete", "filter", "SEARCH_ARTIST"]);
+    if (artistFilter) {
+      selectedArtistArr.push(["add", "filter", "SEARCH_BY_ARTIST"]);
+    } else if (artistFilter != priorArtistSearched) {
+      selectedArtistArr.push(["delete", "filter", "SEARCH_BY_ARTIST"]);
     }
   }
   console.log(2);
-  // searchArtist();
+  // searchByArtist();
+
+  function filterByLyrics() {
+    let lyricsFilter = $("#searchByLyrics").prop("checked");
+    let priorLyricsSearched = $("#searchPriorArtist").attr("priorvalue");
+    if (lyricsFilter) {
+      selectedArtistArr.push(["add", "filter", "SEARCH_BY_LYRICS"]);
+    } else if (lyricsFilter != priorLyricsSearched) {
+      selectedLyricsArr.push(["delete", "filter", "SEARCH_BY_LYRICS"]);
+    }
+  }
+  console.log(2);
+  // searchByLyrics();
+
+
 
   function filtersImplemented(e) {
     e.preventDefault();
