@@ -55,39 +55,16 @@
     <!-- will use the API/s within the search bar to display results -->
   </div>
 
-    <aside>
-        <!-- a list of keywords from local storage displayed here -->
-        <ul>
-            <li></li>
-        </ul>
-        <section name="searchFiltersForm" id="searchFiltersForm" style="display:block;" class="filtersFormDefaultColor" href="#">
-            <label>
-                <input type="checkbox" name="searchByGenre" id="searchByGenre" priorvalue=""><span>Search Genre</span></label>
-
-                <label><input type="checkbox" name="searchByArtist" id="searchByArtist" priorvalue=""> <span>Search Artist
-                </span></label>
-
-                <label><input type="checkbox" name="searchByLyrics" id="searchByLyrics" priorvalue=""> <span>Search Lyrics
-                </span></label>
-
-
-                    <button id="filterApplyButton">Apply Filters</button>
-                
-            
-        </section>
-    </aside>
-
-    <div id="searchBar">
-        <!-- will use the API/s within the search bar to display results -->
-
-
   <!-- a list of keywords from local storage displayed here -->
   
   <div class="row" name="searchFiltersForm" id="searchFiltersForm" style="display:block;"
     class="filtersFormDefaultColor" href="#">
     <div class="col">
-      <label>
-        <input type="checkbox" name="SearchGenre" id="SearchGenre" priorvalue=""><span>Search Genre</span></label>
+      
+        <label><input type="checkbox" name="searchByLyrics" id="searchByLyrics" priorvalue=""> <span>Search Lyrics
+        </span></label>
+        
+       <label><input type="checkbox" name="SearchGenre" id="SearchGenre" priorvalue=""><span>Search Genre</span></label>
 
       <label><input type="checkbox" name="SearchArtist" id="SearchArtist" priorvalue=""> <span>Search Artist
 
@@ -118,7 +95,7 @@
     <!-- created an iframe to test youTube API javascript (HOPE)-->
 
 <div class="col s4">
-    <iframe frameBorder="0" class="card" width="400" height="315" src="">
+    <!-- <iframe frameBorder="0" class="card" width="400" height="315" src=""> -->
       <div id="player"></div>
       <script>
         var tag = document.createElement('script');
