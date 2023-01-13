@@ -1,4 +1,5 @@
 console.log("top")
+
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems);
@@ -16,7 +17,9 @@ function displayYouTube(ytList) {
   }
   $("#resultsList").append(list);
 }
+
 console.log("top3")
+
 // Examples so I don't forget
 // GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=Ks-_Mh1QhMc&type=video&key=[YOUR_API_KEY] HTTP/1.1
 
@@ -24,7 +27,9 @@ console.log("top3")
 // Accept: application/json
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
+
 console.log("top4")
+
 function youTubeAPI(input) {
   var youTube =
     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
@@ -37,12 +42,15 @@ function youTubeAPI(input) {
     })
     .then(function (data) {
       console.log(data);
-      console.log(data.items[0].id.videoId);
+      // console.log(data.items[0].id.videoId);
       displayYouTube(data.items);
+    }).catch(e => {
+      console.log('here is the error', e)
     });
 }
 
 console.log("top5")
+
 $("#searchBtn").on("click", function( ){
   var input = $("#Search").val()
   console.log("click ", input)
@@ -50,36 +58,54 @@ $("#searchBtn").on("click", function( ){
   $("#youtube-title").text(input)
   youTubeAPI(input)
 })
-
 // function displayYouTube(){}
+
+
 console.log("top6")
+
 //functions for filterPanel
 let selectedGenreArr = [];
 let selectedArtistArr = [];
+let selectedLyricsArr = [];
 
-function searchGenre() {
+function searchByGenre() {
   $("#filterApplyButton").show();
-  let genre = $("#searchGenre").prop("checked");
-  let artist = $("#searchArtist").prop("checked");
+  let genreFilter = $("#searchByGenre").prop("checked");
   let priorGenreSearched = $("#searchPriorGenre").attr("priorvalue");
-  if (genre) {
-    selectedGenreArr.push(["add", "filter", "SEARCH_GENRE"]);
-  } else if (genre != priorGenreSearched) {
-    selectedGenreArr.push(["delete", "filter", "SEARCH_GENRE"]);
+  if (genreFilter) {
+    selectedGenreArr.push(["add", "filter", "SEARCH_BY_GENRE"]);
+  } else if (genreFilter != priorGenreSearched) {
+    selectedGenreArr.push(["delete", "filter", "SEARCH_BY_GENRE"]);
   }
 }
   // searchGenre();
 console.log(1);
-  function searchArtist() {
-    let priorArtistSearched = $("#searchPriorAritst").attr("priorvalue");
-    if (artist) {
-      selectedArtistArr.push(["add", "filter", "SEARCH_ARTIST"]);
-    } else if (artist != priorArtistSearched) {
-      selectedArtistArr.push(["delete", "filter", "SEARCH_ARTIST"]);
+
+  function searchByArtist() {
+    let artistFilter = $("#searchByArtist").prop("checked");
+    let priorArtistSearched = $("#searchPriorArtist").attr("priorvalue");
+    if (artistFilter) {
+      selectedArtistArr.push(["add", "filter", "SEARCH_BY_ARTIST"]);
+    } else if (artistFilter != priorArtistSearched) {
+      selectedArtistArr.push(["delete", "filter", "SEARCH_BY_ARTIST"]);
     }
   }
-  console.log(2)
-  // searchArtist();
+  console.log(2);
+  // searchByArtist();
+
+  function filterByLyrics() {
+    let lyricsFilter = $("#searchByLyrics").prop("checked");
+    let priorLyricsSearched = $("#searchPriorArtist").attr("priorvalue");
+    if (lyricsFilter) {
+      selectedArtistArr.push(["add", "filter", "SEARCH_BY_LYRICS"]);
+    } else if (lyricsFilter != priorLyricsSearched) {
+      selectedLyricsArr.push(["delete", "filter", "SEARCH_BY_LYRICS"]);
+    }
+  }
+  console.log(2);
+  // searchByLyrics();
+
+
 
   function filtersImplemented(e) {
     e.preventDefault();
@@ -94,11 +120,13 @@ console.log(1);
     //  + genre + "&showArtist=" + artist;
     $.ajax(baseUrl).done(function(response) {
       doSearch(filtersImplemented);
+      
       console.log(response);
     });
   }
-  //filtersImplemented(e); //!Not working
-  //e.addEventListener("click", filtersImplemented);
+  //filtersImplemented(e); //!working DO NOT DELETE!!!!
+  var applyFiltersButton = $('#filterApplyButton')
+  applyFiltersButton.on("click", filtersImplemented);
 
 // This function creates an <iframe> (and YouTube player)
 
@@ -106,7 +134,7 @@ var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '390',
-    width: '640',
+    width: '400',
     videoId: 'M7lc1UVf-VE',
     playerVars: {
       'playsinline': 1

@@ -60,13 +60,17 @@
   <div class="row" name="searchFiltersForm" id="searchFiltersForm" style="display:block;"
     class="filtersFormDefaultColor" href="#">
     <div class="col">
-      <label>
-        <input type="checkbox" name="SearchGenre" id="SearchGenre" priorvalue=""><span>Search Genre</span></label>
+      
+        <label><input type="checkbox" name="searchByLyrics" id="searchByLyrics" priorvalue=""> <span>Search Lyrics
+        </span></label>
+        
+       <label><input type="checkbox" name="SearchGenre" id="SearchGenre" priorvalue=""><span>Search Genre</span></label>
 
       <label><input type="checkbox" name="SearchArtist" id="SearchArtist" priorvalue=""> <span>Search Artist
 
         </span></label>
       <button class="waves-effect waves-light btn" id="filterApplyButton">Apply Filters</button>
+
     </div>
     <ul>
       <li></li>
@@ -91,7 +95,7 @@
     <!-- created an iframe to test youTube API javascript (HOPE)-->
 
 <div class="col s4">
-    <iframe frameBorder="0" class="card" width="400" height="315" src="">
+    <!-- <iframe frameBorder="0" class="card" width="400" height="315" src=""> -->
       <div id="player"></div>
       <script>
         var tag = document.createElement('script');
