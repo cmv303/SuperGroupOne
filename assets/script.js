@@ -1,4 +1,5 @@
 console.log("top")
+
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems);
@@ -16,7 +17,9 @@ function displayYouTube(ytList) {
   }
   $("#resultsList").append(list);
 }
+
 console.log("top3")
+
 // Examples so I don't forget
 // GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=Ks-_Mh1QhMc&type=video&key=[YOUR_API_KEY] HTTP/1.1
 
@@ -24,7 +27,9 @@ console.log("top3")
 // Accept: application/json
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
+
 console.log("top4")
+
 function youTubeAPI(input) {
   var youTube =
     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
@@ -43,6 +48,7 @@ function youTubeAPI(input) {
 }
 
 console.log("top5")
+
 $("#searchBtn").on("click", function( ){
   var input = $("#Search").val()
   console.log("click ", input)
@@ -50,9 +56,11 @@ $("#searchBtn").on("click", function( ){
   $("#youtube-title").text(input)
   youTubeAPI(input)
 })
-
 // function displayYouTube(){}
+
+
 console.log("top6")
+
 //functions for filterPanel
 let selectedGenreArr = [];
 let selectedArtistArr = [];
@@ -69,6 +77,7 @@ function searchGenre() {
 }
   // searchGenre();
 console.log(1);
+
   function searchArtist() {
     let artist = $("#searchArtist").prop("checked");
     let priorArtistSearched = $("#searchPriorArtist").attr("priorvalue");
@@ -94,10 +103,12 @@ console.log(1);
     //  + genre + "&showArtist=" + artist;
     $.ajax(baseUrl).done(function(response) {
       doSearch(filtersImplemented);
+      
       console.log(response);
     });
   }
   console.log(3)
+
   var filterApplyButton = $("#filterApplyButton");
   console.log(filterApplyButton, "filter applied");
   filterApplyButton.on("click", filtersImplemented);
