@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     M.Sidenav.init(elems);
   });
 // youtube API key
-const key = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4";
+const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
 console.log("top2")
 function displayYouTube(ytList) {
   $("#resultsList").empty("");
@@ -42,8 +42,10 @@ function youTubeAPI(input) {
     })
     .then(function (data) {
       console.log(data);
-      console.log(data.items[0].id.videoId);
+      // console.log(data.items[0].id.videoId);
       displayYouTube(data.items);
+    }).catch(e => {
+      console.log('here is the error', e)
     });
 }
 
@@ -122,9 +124,9 @@ console.log(1);
       console.log(response);
     });
   }
-  //filtersImplemented(e); //!Not working
-
-  //e.addEventListener("click", filtersImplemented);
+  //filtersImplemented(e); //!working DO NOT DELETE!!!!
+  var applyFiltersButton = $('#filterApplyButton')
+  applyFiltersButton.on("click", filtersImplemented);
 
 // This function creates an <iframe> (and YouTube player)
 
@@ -132,7 +134,7 @@ var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '390',
-    width: '640',
+    width: '400',
     videoId: 'M7lc1UVf-VE',
     playerVars: {
       'playsinline': 1
