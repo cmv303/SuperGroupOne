@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     M.Sidenav.init(elems);
   });
 // youtube API key
-const key = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4";
+const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
 console.log("top2")
 function displayYouTube(ytList) {
   $("#resultsList").empty("");
