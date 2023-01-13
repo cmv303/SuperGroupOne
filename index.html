@@ -51,52 +51,52 @@
 </header>
 
 <body>
+  <div class="row" id="searchBar">
+    <!-- will use the API/s within the search bar to display results -->
+  </div>
+
+  <!-- a list of keywords from local storage displayed here -->
+  <ul>
+    <li></li>
+  </ul>
+  <div class="row" name="searchFiltersForm" id="searchFiltersForm" style="display:block;"
+    class="filtersFormDefaultColor" href="#">
+    <div class="col m12">
+      <label>
+        <input type="checkbox" name="SearchGenre" id="SearchGenre" priorvalue=""><span>Search Genre</span></label>
+
+      <label><input type="checkbox" name="SearchArtist" id="SearchArtist" priorvalue=""> <span>Search Artist
+
+        </span></label>
+      <button class="waves-effect waves-light btn" id="filterApplyButton">Apply Filters</button>
+    </div>
+
+  </div>
+
+
   <div id="searchBar">
     <!-- will use the API/s within the search bar to display results -->
   </div>
-    <aside>
-        <!-- a list of keywords from local storage displayed here -->
-        <ul>
-            <li></li>
-        </ul>
-        <section name="searchFiltersForm" id="searchFiltersForm" style="display:block;" class="filtersFormDefaultColor" href="#">
-            <label>
-                <input type="checkbox" name="SearchGenre" id="SearchGenre" priorvalue=""><span>Search Genre</span></label>
-
-                <label><input type="checkbox" name="SearchArtist" id="SearchArtist" priorvalue=""> <span>Search Artist
-
-                </span></label>
-                    <button id="filterApplyButton">Apply Filters</button>
-                
-            
-        </section>
-    </aside>
-
-    <div  id="searchBar">
-        <!-- will use the API/s within the search bar to display results -->
-    </div>
 
   <div class="row" id="videoArea">
 
-  
-  <div class="col s4">Playlist: <span id="playlist-title"></span></div class="col s4">
-  <div class="col s4">Videolist: <span id="youtube-title"></span></div class="col s4">
-  <!-- created an iframe to test youTube API javascript (HOPE)-->
-  
-  
-  <iframe frameBorder="0"class="col s4" width="400" height="315" src="">
-  </iframe>
-  <!-- where songs that are selected from the results list can be played directly
+
+    <div class="col s4">Playlist: <span id="playlist-title"></span></div class="col s4">
+    <div class="col s4">Videolist: <span id="youtube-title"></span></div class="col s4">
+    <!-- created an iframe to test youTube API javascript (HOPE)-->
+
+
+    <iframe frameBorder="0" class="col s4" width="400" height="315" src="">
+    </iframe>
+    <!-- where songs that are selected from the results list can be played directly
         from youtube -->
-      
-  <div class="col s4" id="resultsList"> Results list
-    <!-- display results from fetch requests -->
+
+    <div class="col s4" id="resultsList"> Results list
+      <!-- display results from fetch requests -->
     </div>
-    </div>
-    
+  </div>
 
   </div>
-</div>
 
   <p id="playlist-description"></p>
   <div id="playlist-container">

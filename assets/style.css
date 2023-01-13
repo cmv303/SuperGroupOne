@@ -19,6 +19,15 @@ body {
      
     
 }
+label {
+    
+     font-family: 'Indie Flower', cursive;
+     font-size: 20px;
+     background: -webkit-linear-gradient(#26a69a, #9198e5);
+     -webkit-background-clip: text;
+   
+}
+
 ::placeholder {
      color: black;
      font-family: 'Indie Flower', cursive;
@@ -66,6 +75,11 @@ img.responsive-img {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+#searchFiltersForm {
+     align-content: center;
+     color: black;
+}
+
 li.active {
      font-family: 'Indie Flower', cursive;
      font-size: 18px;
