@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 // youtube API key
 const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
+const muskey = "1b483628365d407895a612635af439ad"
 console.log("top2")
 function displayYouTube(ytList) {
   $("#resultsList").empty("");
@@ -29,14 +30,15 @@ console.log("top3")
 // https://www.youtube.com/watch?v=-WowH0liGfE
 
 console.log("top4")
-
-function youTubeAPI(input) {
-  var youTube =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
+function musixmatchApI(input) {
+  var musicmatch =
+  "http://api.musixmatch.com/ws/1.1/track.search?q_artist=" +
     input +
-    "&type=video&key=" +
-    key;
-  fetch(youTube)
+    "&page_size=3&page=1&s_track_rating=desc&apikey=" +
+    muskey;
+    fetch(musicmatch,{
+      method: "GET", headers: ""
+    })
     .then(function (response) {
       return response.json();
     })
@@ -46,20 +48,26 @@ function youTubeAPI(input) {
       displayYouTube(data.items);
     }).catch(e => {
       console.log('here is the error', e)
-    });
-}
+    });}
 
-console.log("top5")
-
-$("#searchBtn").on("click", function( ){
-  var input = $("#Search").val()
-  console.log("click ", input)
-  $("#youtube-title").empty()
-  $("#youtube-title").text(input)
-  youTubeAPI(input)
-})
-// function displayYouTube(){}
-
+// function youTubeAPI(input) {
+//   var youTube =
+//     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
+//     input +
+//     "&type=video&key=" +
+//     key;
+//   fetch(youTube)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       // console.log(data.items[0].id.videoId);
+//       displayYouTube(data.items);
+//     }).catch(e => {
+//       console.log('here is the error', e)
+//     });
+// }
 
 console.log("top6")
 
@@ -128,39 +136,13 @@ console.log(1);
   var applyFiltersButton = $('#filterApplyButton')
   applyFiltersButton.on("click", filtersImplemented);
 
-// This function creates an <iframe> (and YouTube player)
-
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
-    height: '390',
-    width: '400',
-    videoId: 'M7lc1UVf-VE',
-    playerVars: {
-      'playsinline': 1
-    },
-    events: {
-      'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-    // The API will call this function when the video player is ready.
-    function onPlayerReady(event) {
-      event.target.playVideo();
-    }
+  $("#searchBtn").on("click", function( ){
+    var input = $("#Search").val()
+    console.log("click ", input)
+    $("#youtube-title").empty()
+    $("#youtube-title").text(input)
+    musixmatchApI(input)
+   // youTubeAPI(input)
+  })
+  // function displayYouTube(){}
   
-    // The API calls this function when the player's state changes.
-    // The function indicates that when playing a video (state=1),
-    // the player should play for six seconds and then stop.
-    var done = false;
-    function onPlayerStateChange(event) {
-      if (event.data == YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
-        done = true;
-      }
-    }
-    function stopVideo() {
-      player.stopVideo();
-    }

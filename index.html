@@ -92,21 +92,6 @@
 
     <div class="card">Videolist: <span id="youtube-title"></span></div class="col s4">
       </div>
-    <!-- created an iframe to test youTube API javascript (HOPE)-->
-
-<div class="col s4">
-    <!-- <iframe frameBorder="0" class="card" width="400" height="315" src=""> -->
-      <div id="player"></div>
-      <script>
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      </script>
-    </iframe>
-  </div>
-    <!-- where songs that are selected from the results list can be played directly
-        from youtube -->
 <div class="col s4">
     <div class="card" id="resultsList"> Results list
       <!-- display results from fetch requests -->
