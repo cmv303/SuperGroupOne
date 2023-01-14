@@ -16,11 +16,11 @@ function logLyric() {
   var mXm =
     "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
     lyric +
-    "&apikey=38bfab1d78863e402542205e1d2d9257";
-  fetchData();
-
+    "&apikey=f5675484f5751c3529bca2ad13ec32fd";
+  fetchData(mXm);
+}
   //take input and fetch song data from musixmatch
-  function fetchData() {
+  function fetchData(mXm) {
     fetch(mXm, {
       headers: {
         // allows us to bypass the CORS error, 
@@ -29,13 +29,31 @@ function logLyric() {
       }
     })
       .then(function (response) {
+        console.log(response);
         return response.json();
+      })      .then(function (data) {
+        console.log(data.message.body);
+        localStorage.setItem("musicSearch",JSON.stringify(data))
+        displayMusicmatch()
       })
-      .then(function (data) {
-        console.log(data);
-      });
-
+    }
 console.log("top")
+
+function displayMusicmatch() {
+  $("#resultsList").empty();
+  var musicList = JSON.parse(localStorage.getItem("musicSearch"))
+  console.log(musicList)
+  var list = $("<ul>");
+  var track_list = musicList.message.body.track_list
+  for (let i = 0; i < track_list.length; i++) {
+    var listItem = $("<li>");
+    listItem.text(track_list[i].track.track_name);
+    list.append(listItem);
+
+  }
+  $("#resultsList").append(list);
+}
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
@@ -45,18 +63,16 @@ document.addEventListener('DOMContentLoaded', function() {
 const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
 const muskey = "1b483628365d407895a612635af439ad"
 console.log("top2")
-function displayYouTube(ytList) {
-  $("#resultsList").empty("");
-  var list = $("<ul>");
-  for (let i = 0; i < ytList.length; i++) {
-    var listItem = $("<li>");
-    listItem.text(ytList[i].snippet.title);
-    list.append(listItem);
+// function displayYouTube(ytList) {
+//   $("#resultsList").empty("");
+//   var list = $("<ul>");
+//   for (let i = 0; i < ytList.length; i++) {
+//     var listItem = $("<li>");
+//     listItem.text(ytList[i].snippet.title);
+//     list.append(listItem);
 
-  }
-}
-
-
+//   }
+// }
 
 console.log("top3")
 
@@ -69,17 +85,9 @@ console.log("top3")
 
 
 // LaShawn's youtube API key:
-const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c"
+// const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c"
 
 // this function currently returns youtube videos matching the user input,
-$("#searchBtn").on("click", function () {
-  var input = $("#Search").val();
-  console.log("click ", input);
-  $("#youtube-title").empty();
-  $("#youtube-title").text(input);
-  youTubeAPI(input);
-});
-
 // can we store the musixmatch data and run through here so youtube vids match musixmatch songs?
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
@@ -87,55 +95,37 @@ $("#searchBtn").on("click", function () {
 console.log("top4")
 
 
-function youTubeAPI(input) {
-  var youTube =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
-    input +
-    "&page_size=3&page=1&s_track_rating=desc&apikey=" +
-    muskey;
-    fetch(musicmatch,{
-      method: "GET", headers: ""
-    })
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
+// function youTubeAPI(input) {
+//   var youTube =
+//     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
+//     input +
+//     "&page_size=3&page=1&s_track_rating=desc&apikey=" +
+//     muskey;
+//     fetch(mXm,{
+//       method: "GET", headers: ""
+//     })
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
 
-      // this was an experiment to capture the videoID of the returned data
-      console.log(data.items[0].id.videoId);
+//       // this was an experiment to capture the videoID of the returned data
+//       console.log(data.items[0].id.videoId);
 
-      // console.log(data.items[0].id.videoId);
+//       // console.log(data.items[0].id.videoId);
 
-      displayYouTube(data.items);
-    }).catch(e => {
-      console.log('here is the error', e)
-    });
-}
+//       displayYouTube(data.items);
+//     }).catch(e => {
+//       console.log('here is the error', e)
+//     });
+// }
 
 
 //display youtube data
 // creates a list item for each returned youtube video
-function displayYouTube(ytList) {
-  $("#resultsList").empty("");
-  var list = $("<ul>");
-  for (let i = 0; i < ytList.length; i++) {
-    var listItem = $("<li>");
-    listItem.text(ytList[i].snippet.title);
-    list.append(listItem);
-  }
-  $("#resultsList").append(list);
-}
-
 console.log("top5")
 
-$("#searchBtn").on("click", function( ){
-  var input = $("#Search").val()
-  console.log("click ", input)
-  $("#youtube-title").empty()
-  $("#youtube-title").text(input)
-  youTubeAPI(input)
-})
 // function displayYouTube(){}
 
 // function youTubeAPI(input) {
@@ -257,13 +247,13 @@ function filtersImplemented(e) {
   var applyFiltersButton = $('#filterApplyButton')
   applyFiltersButton.on("click", filtersImplemented);
 
-  $("#searchBtn").on("click", function( ){
-    var input = $("#Search").val()
-    console.log("click ", input)
-    $("#youtube-title").empty()
-    $("#youtube-title").text(input)
-    musixmatchApI(input)
-   // youTubeAPI(input)
-  })
-  // function displayYouTube(){}
+  // $("#searchBtn").on("click", function( ){
+    // var input = $("#Search").val()
+    // console.log("click ", input)
+    // $("#youtube-title").empty()
+    // $("#youtube-title").text(input)
+    //musixmatchApI(input)
+   //youTubeAPI(input)
+  // })
+  //function displayYouTube(){}
   
