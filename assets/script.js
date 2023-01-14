@@ -40,19 +40,29 @@ function logLyric() {
 console.log("top")
 
 function displayMusicmatch() {
+  // this is removes old search results if present 
   $("#resultsList").empty();
+  // this is the local storage that shows the the results from the search 
   var musicList = JSON.parse(localStorage.getItem("musicSearch"))
   console.log(musicList)
   var list = $("<ul>");
+  // just pulling info from the music match to a local var 
   var track_list = musicList.message.body.track_list
   for (let i = 0; i < track_list.length; i++) {
     var listItem = $("<li>");
-    listItem.text(track_list[i].track.track_name);
-    list.append(listItem);
-
+    var thumbnailItem = $("<a>")
+    // Gets the link to navigate to a new tab
+    thumbnailItem.attr("target","_blank")
+    var source = track_list[i].track.track_share_url
+    // this is the link href
+  thumbnailItem.attr('href', source)
+  listItem.text(track_list[i].track.track_name)
+  thumbnailItem.append(listItem)
+  list.append(thumbnailItem);
   }
   $("#resultsList").append(list);
 }
+
 
 
 document.addEventListener('DOMContentLoaded', function() {
