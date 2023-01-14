@@ -59,10 +59,12 @@ function displayMusicmatch() {
   // this is what appears on the list to click on to go to the music match
   var track_name = track_list[i].track.track_name
   var artist_name  = track_list[i].track.artist_name
-  var resultsLabel = artist_name + "\n" + track_name
+  var resultsLabel = "artist name" + artist_name + "\n" + "track name" + track_name
   listItem.text(resultsLabel)
   thumbnailItem.append(listItem)
   list.append(thumbnailItem);
+  // build a function to fire the youtube API that matches the results of the music match API and goes to the youtube player on 
+  // a new window and plays the video
   }
   $("#resultsList").append(list);
 }
