@@ -1,3 +1,40 @@
+
+document.addEventListener("DOMContentLoaded", function () {
+  var elems = document.querySelectorAll(".sidenav");
+  M.Sidenav.init(elems);
+});
+
+//target the search button for a click event
+var searchBtn = document.getElementById("searchBtn");
+searchBtn.addEventListener("click", logLyric);
+
+//
+function logLyric() {
+  var inputBox = document.getElementById("Search");
+  var lyric = inputBox.value;
+  console.log(lyric);
+  var mXm =
+    "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
+    lyric +
+    "&apikey=38bfab1d78863e402542205e1d2d9257";
+  fetchData();
+
+  //take input and fetch song data from musixmatch
+  function fetchData() {
+    fetch(mXm, {
+      headers: {
+        // allows us to bypass the CORS error, 
+        // will need to replace temp api key before presentation (expires on sunday)
+        "x-cors-api-key": "temp_211e4d54773c2e03893b97b548ed8d74",
+      }
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      });
+
 console.log("top")
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,24 +52,44 @@ function displayYouTube(ytList) {
     var listItem = $("<li>");
     listItem.text(ytList[i].snippet.title);
     list.append(listItem);
+
   }
-  $("#resultsList").append(list);
 }
+
+
 
 console.log("top3")
 
 // Examples so I don't forget
 // GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=Ks-_Mh1QhMc&type=video&key=[YOUR_API_KEY] HTTP/1.1
 
-// Authorization: Bearer [YOUR_ACCESS_TOKEN]
-// Accept: application/json
+
+// Hope's youtube API key:
+// const key = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4";
+
+
+// LaShawn's youtube API key:
+const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c"
+
+// this function currently returns youtube videos matching the user input,
+$("#searchBtn").on("click", function () {
+  var input = $("#Search").val();
+  console.log("click ", input);
+  $("#youtube-title").empty();
+  $("#youtube-title").text(input);
+  youTubeAPI(input);
+});
+
+// can we store the musixmatch data and run through here so youtube vids match musixmatch songs?
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
 
 console.log("top4")
-function musixmatchApI(input) {
-  var musicmatch =
-  "http://api.musixmatch.com/ws/1.1/track.search?q_artist=" +
+
+
+function youTubeAPI(input) {
+  var youTube =
+    "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
     input +
     "&page_size=3&page=1&s_track_rating=desc&apikey=" +
     muskey;
@@ -44,11 +101,42 @@ function musixmatchApI(input) {
     })
     .then(function (data) {
       console.log(data);
+
+      // this was an experiment to capture the videoID of the returned data
+      console.log(data.items[0].id.videoId);
+
       // console.log(data.items[0].id.videoId);
+
       displayYouTube(data.items);
     }).catch(e => {
       console.log('here is the error', e)
-    });}
+    });
+}
+
+
+//display youtube data
+// creates a list item for each returned youtube video
+function displayYouTube(ytList) {
+  $("#resultsList").empty("");
+  var list = $("<ul>");
+  for (let i = 0; i < ytList.length; i++) {
+    var listItem = $("<li>");
+    listItem.text(ytList[i].snippet.title);
+    list.append(listItem);
+  }
+  $("#resultsList").append(list);
+}
+
+console.log("top5")
+
+$("#searchBtn").on("click", function( ){
+  var input = $("#Search").val()
+  console.log("click ", input)
+  $("#youtube-title").empty()
+  $("#youtube-title").text(input)
+  youTubeAPI(input)
+})
+// function displayYouTube(){}
 
 // function youTubeAPI(input) {
 //   var youTube =
@@ -71,6 +159,7 @@ function musixmatchApI(input) {
 
 console.log("top6")
 
+
 //functions for filterPanel
 let selectedGenreArr = [];
 let selectedArtistArr = [];
@@ -86,8 +175,40 @@ function searchByGenre() {
     selectedGenreArr.push(["delete", "filter", "SEARCH_BY_GENRE"]);
   }
 }
-  // searchGenre();
+// searchGenre();
 console.log(1);
+
+function searchArtist() {
+  let priorArtistSearched = $("#searchPriorAritst").attr("priorvalue");
+  if (artist) {
+    selectedArtistArr.push(["add", "filter", "SEARCH_ARTIST"]);
+  } else if (artist != priorArtistSearched) {
+    selectedArtistArr.push(["delete", "filter", "SEARCH_ARTIST"]);
+  }
+}
+console.log(2);
+// searchArtist();
+
+function filtersImplemented(e) {
+  e.preventDefault();
+  console.log("filter fired");
+  let combinedArr = selectedGenreArr.concat(selectedArtistArr);
+  let filtersImplemented = {
+    searchChanges: JSON.stringify(combinedArr),
+    showGenre: genre,
+    showArtist: artist,
+  };
+  let baseUrl =
+    "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?q_artist=justin%20bieber&page_size=3&page=1&s_track_rating=desc&apikey=8eb4ed7bb8315a88d7fe11ff7b000ef1";
+  //  + genre + "&showArtist=" + artist;
+  $.ajax(baseUrl).done(function (response) {
+    doSearch(filtersImplemented);
+    console.log(response);
+  });
+}
+//filtersImplemented(e); //!Not working
+//e.addEventListener("click", filtersImplemented);
+
 
   function searchByArtist() {
     let artistFilter = $("#searchByArtist").prop("checked");
