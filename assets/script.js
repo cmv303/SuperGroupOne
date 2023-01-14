@@ -54,9 +54,13 @@ function displayMusicmatch() {
     // Gets the link to navigate to a new tab
     thumbnailItem.attr("target","_blank")
     var source = track_list[i].track.track_share_url
-    // this is the link href
+    // this is the link href 
   thumbnailItem.attr('href', source)
-  listItem.text(track_list[i].track.track_name)
+  // this is what appears on the list to click on to go to the music match
+  var track_name = track_list[i].track.track_name
+  var artist_name  = track_list[i].track.artist_name
+  var resultsLabel = artist_name + "\n" + track_name
+  listItem.text(resultsLabel)
   thumbnailItem.append(listItem)
   list.append(thumbnailItem);
   }
