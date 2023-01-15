@@ -4,7 +4,7 @@
   /* background-color: cadetblue;  */
   box-sizing: border-box;
 }
-body {
+body, .page-footer {
   background-color: #9cd6f8;
 }
 .nav {
