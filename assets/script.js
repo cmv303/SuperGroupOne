@@ -16,11 +16,11 @@ function logLyric() {
   var mXm =
     "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
     lyric +
-    "&apikey=38bfab1d78863e402542205e1d2d9257";
-  fetchData();
-
+    "&apikey=f5675484f5751c3529bca2ad13ec32fd";
+  fetchData(mXm);
+}
   //take input and fetch song data from musixmatch
-  function fetchData() {
+  function fetchData(mXm) {
     fetch(mXm, {
       headers: {
         // allows us to bypass the CORS error, 
@@ -29,13 +29,47 @@ function logLyric() {
       }
     })
       .then(function (response) {
+        console.log(response);
         return response.json();
+      })      .then(function (data) {
+        console.log(data.message.body);
+        localStorage.setItem("musicSearch",JSON.stringify(data))
+        displayMusicmatch()
       })
-      .then(function (data) {
-        console.log(data);
-      });
-
+    }
 console.log("top")
+
+function displayMusicmatch() {
+  // this is removes old search results if present 
+  $("#resultsList").empty();
+  // this is the local storage that shows the the results from the search 
+  var musicList = JSON.parse(localStorage.getItem("musicSearch"))
+  console.log(musicList)
+  var list = $("<ul>");
+  // just pulling info from the music match to a local var 
+  var track_list = musicList.message.body.track_list
+  for (let i = 0; i < track_list.length; i++) {
+    var listItem = $("<li>");
+    var thumbnailItem = $("<a>")
+    // Gets the link to navigate to a new tab
+    thumbnailItem.attr("target","_blank")
+    var source = track_list[i].track.track_share_url
+    // this is the link href 
+  thumbnailItem.attr('href', source)
+  // this is what appears on the list to click on to go to the music match
+  var track_name = track_list[i].track.track_name
+  var artist_name  = track_list[i].track.artist_name
+  var resultsLabel = "artist name" + artist_name + "\n" + "track name" + track_name
+  listItem.text(resultsLabel)
+  thumbnailItem.append(listItem)
+  list.append(thumbnailItem);
+  // build a function to fire the youtube API that matches the results of the music match API and goes to the youtube player on 
+  // a new window and plays the video
+  }
+  $("#resultsList").append(list);
+}
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
@@ -43,19 +77,18 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 // youtube API key
 const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
+const muskey = "1b483628365d407895a612635af439ad"
 console.log("top2")
-function displayYouTube(ytList) {
-  $("#resultsList").empty("");
-  var list = $("<ul>");
-  for (let i = 0; i < ytList.length; i++) {
-    var listItem = $("<li>");
-    listItem.text(ytList[i].snippet.title);
-    list.append(listItem);
+// function displayYouTube(ytList) {
+//   $("#resultsList").empty("");
+//   var list = $("<ul>");
+//   for (let i = 0; i < ytList.length; i++) {
+//     var listItem = $("<li>");
+//     listItem.text(ytList[i].snippet.title);
+//     list.append(listItem);
 
-  }
-}
-
-
+//   }
+// }
 
 console.log("top3")
 
@@ -68,17 +101,9 @@ console.log("top3")
 
 
 // LaShawn's youtube API key:
-const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c"
+// const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c"
 
 // this function currently returns youtube videos matching the user input,
-$("#searchBtn").on("click", function () {
-  var input = $("#Search").val();
-  console.log("click ", input);
-  $("#youtube-title").empty();
-  $("#youtube-title").text(input);
-  youTubeAPI(input);
-});
-
 // can we store the musixmatch data and run through here so youtube vids match musixmatch songs?
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
@@ -86,55 +111,57 @@ $("#searchBtn").on("click", function () {
 console.log("top4")
 
 
-function youTubeAPI(input) {
-  var youTube =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
-    input +
-    "&type=video&key=" +
-    key;
-  fetch(youTube)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
+// function youTubeAPI(input) {
+//   var youTube =
+//     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
+//     input +
+//     "&page_size=3&page=1&s_track_rating=desc&apikey=" +
+//     muskey;
+//     fetch(mXm,{
+//       method: "GET", headers: ""
+//     })
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
 
-      // this was an experiment to capture the videoID of the returned data
-      console.log(data.items[0].id.videoId);
+//       // this was an experiment to capture the videoID of the returned data
+//       console.log(data.items[0].id.videoId);
 
-      // console.log(data.items[0].id.videoId);
+//       // console.log(data.items[0].id.videoId);
 
-      displayYouTube(data.items);
-    }).catch(e => {
-      console.log('here is the error', e)
-    });
-}
+//       displayYouTube(data.items);
+//     }).catch(e => {
+//       console.log('here is the error', e)
+//     });
+// }
 
 
 //display youtube data
 // creates a list item for each returned youtube video
-function displayYouTube(ytList) {
-  $("#resultsList").empty("");
-  var list = $("<ul>");
-  for (let i = 0; i < ytList.length; i++) {
-    var listItem = $("<li>");
-    listItem.text(ytList[i].snippet.title);
-    list.append(listItem);
-  }
-  $("#resultsList").append(list);
-}
-
 console.log("top5")
 
-$("#searchBtn").on("click", function( ){
-  var input = $("#Search").val()
-  console.log("click ", input)
-  $("#youtube-title").empty()
-  $("#youtube-title").text(input)
-  youTubeAPI(input)
-})
 // function displayYouTube(){}
 
+// function youTubeAPI(input) {
+//   var youTube =
+//     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
+//     input +
+//     "&type=video&key=" +
+//     key;
+//   fetch(youTube)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       // console.log(data.items[0].id.videoId);
+//       displayYouTube(data.items);
+//     }).catch(e => {
+//       console.log('here is the error', e)
+//     });
+// }
 
 console.log("top6")
 
@@ -236,57 +263,13 @@ function filtersImplemented(e) {
   var applyFiltersButton = $('#filterApplyButton')
   applyFiltersButton.on("click", filtersImplemented);
 
-
-// This function creates an <iframe> (and YouTube player)
-
-var player;
-function onYouTubeIframeAPIReady() {
-
-  player = new YT.Player("player", {
-    height: "390",
-    width: "640",
-    videoId: "M7lc1UVf-VE",
-
-    playerVars: {
-      playsinline: 1,
-    },
-    events: {
-      onReady: onPlayerReady,
-      onStateChange: onPlayerStateChange,
-    },
-  });
-}
-
-// The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
-
-// The API calls this function when the player's state changes.
-// The function indicates that when playing a video (state=1),
-// the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-  }
-}
-function stopVideo() {
-  player.stopVideo();
-}
-
-// console.log("top")
-// console.log("top2")
-// console.log("top3")
-// console.log("top4")
-// console.log("top5")
-// console.log("top6");
-
-// Examples so I don't forget (Hope)
-// GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=Ks-_Mh1QhMc&type=video&key=[YOUR_API_KEY] HTTP/1.1
-
-// Authorization: Bearer [YOUR_ACCESS_TOKEN]
-// Accept: application/json
-
-// https://www.youtube.com/watch?v=-WowH0liGfE
+  // $("#searchBtn").on("click", function( ){
+    // var input = $("#Search").val()
+    // console.log("click ", input)
+    // $("#youtube-title").empty()
+    // $("#youtube-title").text(input)
+    //musixmatchApI(input)
+   //youTubeAPI(input)
+  // })
+  //function displayYouTube(){}
+  
