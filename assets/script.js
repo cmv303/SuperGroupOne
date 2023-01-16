@@ -59,7 +59,7 @@ function displayMusicmatch() {
   // this is what appears on the list to click on to go to the music match
   var track_name = track_list[i].track.track_name
   var artist_name  = track_list[i].track.artist_name
-  var resultsLabel = "artist name" + artist_name + "\n" + "track name" + track_name
+  var resultsLabel = "artist name " + artist_name + "\n" + "track name " + track_name
   listItem.text(resultsLabel)
   thumbnailItem.append(listItem)
   list.append(thumbnailItem);
@@ -69,28 +69,6 @@ function displayMusicmatch() {
   $("#resultsList").append(list);
 }
 
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(elems);
-  });
-// youtube API key
-const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
-const muskey = "1b483628365d407895a612635af439ad"
-console.log("top2")
-// function displayYouTube(ytList) {
-//   $("#resultsList").empty("");
-//   var list = $("<ul>");
-//   for (let i = 0; i < ytList.length; i++) {
-//     var listItem = $("<li>");
-//     listItem.text(ytList[i].snippet.title);
-//     list.append(listItem);
-
-//   }
-// }
-
-console.log("top3")
 
 // Examples so I don't forget
 // GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=Ks-_Mh1QhMc&type=video&key=[YOUR_API_KEY] HTTP/1.1
@@ -108,14 +86,114 @@ console.log("top3")
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
 
+
+
+//target the search button for a click event
+var youTubebtn = document.getElementById("youTubebtn");
+youTubebtn.addEventListener("click", youTubeAPI);
+console.log("youTubebtn")
+
+
+function youTubeAPI() {
+  var input = document.getElementById("Search").value;
+  var youTube =
+  "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
+  input +
+  "&type=video&key=" +
+  key;
+  fetch(youTube)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    localStorage.setItem("youtubeSearch",JSON.stringify(data))
+    displayYouTube(data);
+  }).catch(e => {
+    console.log('here is the error', e)
+  });
+}
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   var elems = document.querySelectorAll('.sidenav');
+//   M.Sidenav.init(elems);
+// });
+
+//display youtube data
+// creates a list item for each returned youtube video
+console.log("top5")
+
+function displayYouTube() {
+  // this is removes old search results if present 
+  $("#youtube-title").empty();
+  // this is the local storage that shows the the results from the search 
+  var ytList = JSON.parse(localStorage.getItem("youtubeSearch"))
+  console.log(ytList)
+  var list = $("<ul>");
+  // just pulling info from the youtube to a local var 
+  var youtube_list = ytList.items
+  for (let i = 0; i < youtube_list.length; i++) {
+    var listItem = $("<li>");
+    var youtubeItem = $("<a>")
+    // Gets the link to navigate to a new tab
+    youtubeItem.attr("target","_blank")
+    var source = "https://www.youtube.com/watch?v=" + youtube_list[i].id.videoId
+    // this is the link href 
+  youtubeItem.attr('href', source)
+  // this is what appears on the list to click on to go to the music match
+  var youtube_video = youtube_list[i].snippet.title
+  var youtubeName = "Video Name " + youtube_video
+  listItem.text(youtubeName)
+  youtubeItem.append(listItem)
+  list.append(youtubeItem);
+  }
+  $("#youtube-title").append(list);
+}
+
+
+// function displayYouTube(ytList) {
+  // $("#youtube-title").empty("");
+  // console.log("youtubelist")
+  // var ytList = $("<ul>");
+  // for (let i = 0; i < ytList.length; i++) {
+    // var listItem = $("<li>");
+    // listItem.text(ytList[i].snippet.title);
+    // list.append(listItem);
+    // 
+  // }
+ // $("#youtube-title").append(list)
+// }
+// function displayYouTube(){
+  // 
+// }
+$("#youTubebtn").on("click", function( ){
+  var input = $("#Search").val()
+  console.log("click ", input)
+  $("#youtube-title").empty()
+  $("#youtube-title").text(input)
+  youTubeAPI(input)
+  })
+  
+  
+console.log("top6")
+
+// youtube API key
+const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
+const muskey = "1b483628365d407895a612635af439ad"
+console.log("top2")
+
+
+console.log("top3")
+
 console.log("top4")
 
 
 // function youTubeAPI(input) {
-//   var youTube =
-//     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
-//     input +
-//     "&page_size=3&page=1&s_track_rating=desc&apikey=" +
+  //   var youTube =
+  //     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
+  //     input +
+  //     "&page_size=3&page=1&s_track_rating=desc&apikey=" +
 //     muskey;
 //     fetch(mXm,{
 //       method: "GET", headers: ""
@@ -136,34 +214,6 @@ console.log("top4")
 //       console.log('here is the error', e)
 //     });
 // }
-
-
-//display youtube data
-// creates a list item for each returned youtube video
-console.log("top5")
-
-// function displayYouTube(){}
-
-// function youTubeAPI(input) {
-//   var youTube =
-//     "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
-//     input +
-//     "&type=video&key=" +
-//     key;
-//   fetch(youTube)
-//     .then(function (response) {
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       // console.log(data.items[0].id.videoId);
-//       displayYouTube(data.items);
-//     }).catch(e => {
-//       console.log('here is the error', e)
-//     });
-// }
-
-console.log("top6")
 
 
 //functions for filterPanel
@@ -263,13 +313,3 @@ function filtersImplemented(e) {
   var applyFiltersButton = $('#filterApplyButton')
   applyFiltersButton.on("click", filtersImplemented);
 
-  // $("#searchBtn").on("click", function( ){
-    // var input = $("#Search").val()
-    // console.log("click ", input)
-    // $("#youtube-title").empty()
-    // $("#youtube-title").text(input)
-    //musixmatchApI(input)
-   //youTubeAPI(input)
-  // })
-  //function displayYouTube(){}
-  
