@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&family=Indie+Flower&display=swap');
 
 * {
   /* background-color: cadetblue;  */
@@ -7,6 +7,12 @@
 body, .page-footer {
   background-color: #9cd6f8;
 }
+
+.page-footer {
+background-color: linear-gradient(#26a69a);
+background: linear-gradient(#26a69a, #9198e5);
+}
+
 .nav {
   background-color: linear-gradient(#26a69a);
 }
@@ -16,7 +22,7 @@ body, .page-footer {
 }
 span {
   color: black;
-  font-family: "Indie Flower", cursive;
+  font-family: 'Comic Neue', cursive;
   font-size: 40px;
   font-weight: bolder;
   padding: 5px;
@@ -26,7 +32,7 @@ span {
 }
 .card {
      color: #26a69a;
-     font-family: "Indie Flower", cursive;
+     font-family: 'Comic Neue', cursive;
      font-size: 30px;
      font-weight: bolder;
      background: -webkit-linear-gradient(#26a69a, #9198e5);
@@ -36,7 +42,7 @@ span {
 
 ::placeholder {
   color: black;
-  font-family: "Indie Flower", cursive;
+  font-family: 'Comic Neue', cursive;
   font-size: 30px;
   font-weight: bolder;
   background: -webkit-linear-gradient(#26a69a, #9198e5);
@@ -49,14 +55,21 @@ span {
   cursor: pointer;
   display: inline-block;
   height: 25px;
-  line-height: 25px;
+  line-height: 20px;
   font-size: 25px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
-
+.row .col {
+float: left;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+padding: 0 .75rem;
+min-height: 1px;
+margin-bottom: 0px;
+}
 #Search {
   border-bottom: 1px solid #9198e5 !important;
 }
@@ -66,7 +79,7 @@ span {
 }
 .waves-effect {
      
-     font-family: "Indie Flower", cursive;
+     font-family: 'Comic Neue', cursive;
      font-size: 20px;
 
 }
@@ -97,7 +110,7 @@ img.responsive-img {
   border-radius: 8px;
 }
 .col.s4 {
-  font-family: "Indie Flower", cursive;
+  font-family: 'Comic Neue', cursive;
   font-size: 35px;
   background: -webkit-linear-gradient(#26a69a, #9198e5);
   -webkit-background-clip: text;
@@ -110,7 +123,7 @@ img.responsive-img {
 }
 
 li.active {
-  font-family: "Indie Flower", cursive;
+  font-family: 'Comic Neue', cursive;
   font-size: 25px;
   background: -webkit-linear-gradient(#112828, #0419ff);
   -webkit-background-clip: text;
