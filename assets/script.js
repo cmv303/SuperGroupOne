@@ -163,7 +163,8 @@ $("#youTubebtn").on("click", function( ){
   console.log("click ", input)
   $("#youtube-title").empty()
   $("#youtube-title").text(input)
-  youTubeAPI(input)
+  filtersImplemented(input)
+  // youTubeAPI(input)
   })
   
   
@@ -179,21 +180,27 @@ console.log("top2")
 let selectedGenreArr = [];
 let selectedArtistArr = [];
 let selectedLyricsArr = [];
+let genre;
+let artist;
+let lyrics;
 
-function searchByGenre() {
+
+// searchGenre();
+function filterByGenre() {
   $("#filterApplyButton").show();
-  let genreFilter = $("#searchByGenre").prop("checked");
+  let genre = $("#filterByGenre").prop("checked");
   let priorGenreSearched = $("#searchPriorGenre").attr("priorvalue");
-  if (genreFilter) {
-    selectedGenreArr.push(["add", "filter", "SEARCH_BY_GENRE"]);
-  } else if (genreFilter != priorGenreSearched) {
-    selectedGenreArr.push(["delete", "filter", "SEARCH_BY_GENRE"]);
+  if (genre) {
+    selectedGenreArr.push(["add", "filter", "SEARCH_GENRE"]);
+  } else if (genre != priorGenreSearched) {
+    selectedGenreArr.push(["delete", "filter", "SEARCH_GENRE"]);
   }
 }
-// searchGenre();
-console.log(1);
 
-function searchArtist() {
+// searchArtist();
+console.log(1);
+function filterByArtist() {
+  let artist = $("#filterByArtist").prop("checked");
   let priorArtistSearched = $("#searchPriorAritst").attr("priorvalue");
   if (artist) {
     selectedArtistArr.push(["add", "filter", "SEARCH_ARTIST"]);
@@ -202,72 +209,42 @@ function searchArtist() {
   }
 }
 console.log(2);
-// searchArtist();
 
+//searchLyrics();
+console.log(3);
+function filterByLyrics() {
+  let lyrics = $("#filterByLyrics").prop("checked");
+  let priorLyricsSearched = $("#searchPriorLyrics").attr("priorvalue");
+  if (lyrics) {
+    selectedLyricsArr.push(["add", "filter", "SEARCH_LYRICS"]);
+  } else if (lyrics !=priorLyricsSearched) {
+    selectedLyricsArr.push(["delete", "filter", "SEARCH_LYRICS"]);
+  }
+  filtersImplemented();
+}
+console.log(4);
+
+//implement filters
 function filtersImplemented(e) {
   e.preventDefault();
   console.log("filter fired");
-  let combinedArr = selectedGenreArr.concat(selectedArtistArr);
+  let combinedArr = selectedGenreArr.concat(selectedArtistArr).concat(selectedLyricsArr);
   let filtersImplemented = {
     searchChanges: JSON.stringify(combinedArr),
-    showGenre: genre,
-    showArtist: artist,
+    filterByGenre: genre,
+    filterByArtist: artist,
+    filterByLyrics: lyrics,
   };
+  console.log(combinedArr, "combined Array");
+  
+
   let baseUrl =
     "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?q_artist=justin%20bieber&page_size=3&page=1&s_track_rating=desc&apikey=8eb4ed7bb8315a88d7fe11ff7b000ef1";
-  //  + genre + "&showArtist=" + artist;
   $.ajax(baseUrl).done(function (response) {
     doSearch(filtersImplemented);
     console.log(response);
   });
 }
-//filtersImplemented(e); //!Not working
-//e.addEventListener("click", filtersImplemented);
-
-
-  function searchByArtist() {
-    let artistFilter = $("#searchByArtist").prop("checked");
-    let priorArtistSearched = $("#searchPriorArtist").attr("priorvalue");
-    if (artistFilter) {
-      selectedArtistArr.push(["add", "filter", "SEARCH_BY_ARTIST"]);
-    } else if (artistFilter != priorArtistSearched) {
-      selectedArtistArr.push(["delete", "filter", "SEARCH_BY_ARTIST"]);
-    }
-  }
-  console.log(2);
-  // searchByArtist();
-
-  function filterByLyrics() {
-    let lyricsFilter = $("#searchByLyrics").prop("checked");
-    let priorLyricsSearched = $("#searchPriorArtist").attr("priorvalue");
-    if (lyricsFilter) {
-      selectedArtistArr.push(["add", "filter", "SEARCH_BY_LYRICS"]);
-    } else if (lyricsFilter != priorLyricsSearched) {
-      selectedLyricsArr.push(["delete", "filter", "SEARCH_BY_LYRICS"]);
-    }
-  }
-  console.log(2);
-  // searchByLyrics();
-
-
-
-  function filtersImplemented(e) {
-    e.preventDefault();
-    console.log("filter fired")
-    let combinedArr = selectedGenreArr.concat(selectedArtistArr);
-    let filtersImplemented = {
-      searchChanges: JSON.stringify(combinedArr),
-      showGenre: genre,
-      showArtist: artist,
-    };
-    let baseUrl = "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?q_artist=justin%20bieber&page_size=3&page=1&s_track_rating=desc&apikey=8eb4ed7bb8315a88d7fe11ff7b000ef1"
-    //  + genre + "&showArtist=" + artist;
-    $.ajax(baseUrl).done(function(response) {
-      doSearch(filtersImplemented);
-      
-      console.log(response);
-    });
-  }
   //filtersImplemented(e); //!working DO NOT DELETE!!!!
   var applyFiltersButton = $('#filterApplyButton')
   applyFiltersButton.on("click", filtersImplemented);
