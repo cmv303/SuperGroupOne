@@ -18,7 +18,7 @@ function logLyric() {
     lyric +
     "&apikey=f5675484f5751c3529bca2ad13ec32fd";
   fetchData(mXm);
-}
+
   //take input and fetch song data from musixmatch
   function fetchData(mXm) {
     fetch(mXm, {
@@ -67,7 +67,7 @@ function displayMusicmatch() {
   // a new window and plays the video
   }
   $("#resultsList").append(list);
-}
+}}
 
 
 // Examples so I don't forget
@@ -163,6 +163,7 @@ const muskey = "1b483628365d407895a612635af439ad"
 console.log("top2")
 
 
+//!Please don't delete anything below this :)
 //functions for filterPanel
 let selectedGenreArr = [];
 let selectedArtistArr = [];
@@ -224,13 +225,20 @@ function filtersImplemented(e) {
   };
   console.log(combinedArr, "combined Array");
   
-
-  let baseUrl =
-    "https://cors-anywhere.herokuapp.com/https://api.musixmatch.com/ws/1.1/track.search?q_artist=justin%20bieber&page_size=3&page=1&s_track_rating=desc&apikey=8eb4ed7bb8315a88d7fe11ff7b000ef1";
+  //!working on this. still not getting it. don't delete :)
+  // let baseUrl =
+  // fetch(
+  //   `https://corsproxylyricallydemo.herokuapp.com/https://api.musixmatch.com/ws/1.1/genre.get?genre_id=118&apikey=${temp_211e4d54773c2e03893b97b548ed8d74}`
+  // ).concat(fetch(fetch(
+  //   `https://corsproxylyricallydemo.herokuapp.com/https://api.musixmatch.com/ws/1.1/artist.get?artist_id=118&apikey=${temp_211e4d54773c2e03893b97b548ed8d74}`
+  // ))).concat(fetch(fetch(
+  //   `https://corsproxylyricallydemo.herokuapp.com/https://api.musixmatch.com/ws/1.1/lyrics.get?lyric_id=118&apikey=${temp_211e4d54773c2e03893b97b548ed8d74}`
+  // )));
   $.ajax(baseUrl).done(function (response) {
     doSearch(filtersImplemented);
     console.log(response);
   });
+  
 }
   //filtersImplemented(e); //!working DO NOT DELETE!!!!
   var applyFiltersButton = $('#filterApplyButton')
