@@ -32,7 +32,7 @@ background: linear-gradient(#26a69a, #9198e5);
 .material-icons {
      color: #26a69a;
      font-family: 'Comic Neue', cursive;
-     font-size: 30px;
+     font-size: 25px;
      padding: 5px;
      font-weight: bolder;
      background: -webkit-linear-gradient(#26a69a, #9198e5);
@@ -50,7 +50,7 @@ span {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.card #slide-out {
+.card {
      color: #26a69a;
      font-family: 'Comic Neue', cursive;
      font-size: 30px;
@@ -58,9 +58,6 @@ span {
      background: -webkit-linear-gradient(#26a69a, #9198e5);
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
-}
-#resultsList {
-     height: 60px;
 }
 
 ::placeholder {
