@@ -48,7 +48,7 @@ span {
   padding: 5px;
   background: -webkit-linear-gradient(#26a69a, #9198e5);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: black;
 }
 .card {
      color: #26a69a;
@@ -57,7 +57,7 @@ span {
      font-weight: bolder;
      background: -webkit-linear-gradient(#26a69a, #9198e5);
      -webkit-background-clip: text;
-     -webkit-text-fill-color: transparent;
+     -webkit-text-fill-color: black;
 }
 
 ::placeholder {
@@ -67,7 +67,7 @@ span {
   font-weight: bolder;
   background: -webkit-linear-gradient(#26a69a, #9198e5);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: black;
 }
 [type="checkbox"] + span:not(.lever) {
   position: relative;
@@ -134,7 +134,7 @@ img.responsive-img {
   font-size: 35px;
   background: -webkit-linear-gradient(#26a69a, #9198e5);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: black;
 }
 #searchFiltersForm {
      display: flex!important;
@@ -147,7 +147,7 @@ li.active {
   font-size: 25px;
   background: -webkit-linear-gradient(#112828, #0419ff);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: black;
 }
 
 
