@@ -1,4 +1,6 @@
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
   var elems = document.querySelectorAll(".sidenav");
   M.Sidenav.init(elems);
@@ -7,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //target the search button for a click event
 var searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", logLyric);
+searchBtn.addEventListener("keypress", logLyric);
 
 //
 function logLyric() {
@@ -91,6 +94,7 @@ function displayMusicmatch() {
 //target the search button for a click event
 var youTubebtn = document.getElementById("youTubebtn");
 youTubebtn.addEventListener("click", youTubeAPI);
+youTubebtn.addEventListener("keypress", youTubeAPI);
 console.log("youTubebtn");
 
 
@@ -145,16 +149,29 @@ function displayYouTube() {
   $("#youtube-title").append(list);
 }
 
-$("#youTubebtn").on("click", function( ){
+console.log("top5");
+
+var searchBtn = $("#searchBtn");
+
+searchBtn.ready(function(){
+  $('#Search').keydown(function(e){
+    if(e.keyCode === 13){
+      e.preventDefault();
+      searchMe();
+    }
+  });
+});
+
+function searchMe(){
   var input = $("#Search").val();
-  console.log("click ", input);
+  console.log("searching: ", input);
   $("#youtube-title").empty();
   $("#youtube-title").text(input);
-  filtersImplemented(input);
-  // youTubeAPI(input)
-  })
-  
-  
+  youTubeAPI(input);
+};
+
+searchBtn.click(searchMe);
+
 console.log("top6");
 
 // youtube API key
