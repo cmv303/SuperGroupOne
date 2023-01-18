@@ -1,4 +1,6 @@
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
   var elems = document.querySelectorAll(".sidenav");
   M.Sidenav.init(elems);
@@ -7,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //target the search button for a click event
 var searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", logLyric);
+searchBtn.addEventListener("keypress", logLyric);
 
 //
 function logLyric() {
@@ -25,7 +28,7 @@ function logLyric() {
       headers: {
         // allows us to bypass the CORS error, 
         // will need to replace temp api key before presentation (expires on sunday)
-        "x-cors-api-key": "temp_211e4d54773c2e03893b97b548ed8d74",
+        "x-cors-api-key": "temp_ff7769232ae92309ea6953784f170a83",
       }
     })
       .then(function (response) {
@@ -91,7 +94,8 @@ function displayMusicmatch() {
 //target the search button for a click event
 var youTubebtn = document.getElementById("youTubebtn");
 youTubebtn.addEventListener("click", youTubeAPI);
-console.log("youTubebtn")
+youTubebtn.addEventListener("keypress", youTubeAPI);
+console.log("youTubebtn");
 
 
 function youTubeAPI() {
@@ -107,10 +111,10 @@ function youTubeAPI() {
   })
   .then(function (data) {
     console.log(data);
-    localStorage.setItem("youtubeSearch",JSON.stringify(data))
+    localStorage.setItem("youtubeSearch",JSON.stringify(data));
     displayYouTube(data);
   }).catch(e => {
-    console.log('here is the error', e)
+    console.log('here is the error', e);
   });
 }
 
@@ -123,44 +127,57 @@ function displayYouTube() {
   $("#youtube-title").empty();
   // this is the local storage that shows the the results from the search 
   var ytList = JSON.parse(localStorage.getItem("youtubeSearch"))
-  console.log(ytList)
+  console.log(ytList);
   var list = $("<ul>");
   // just pulling info from the youtube to a local var 
   var youtube_list = ytList.items
   for (let i = 0; i < youtube_list.length; i++) {
     var listItem = $("<li>");
-    var youtubeItem = $("<a>")
+    var youtubeItem = $("<a>");
     // Gets the link to navigate to a new tab
-    youtubeItem.attr("target","_blank")
+    youtubeItem.attr("target","_blank");
     var source = "https://www.youtube.com/watch?v=" + youtube_list[i].id.videoId
     // this is the link href 
-  youtubeItem.attr('href', source)
+  youtubeItem.attr('href', source);
   // this is what appears on the list to click on to go to the music match
   var youtube_video = youtube_list[i].snippet.title
   var youtubeName = "Video Name " + youtube_video
-  listItem.text(youtubeName)
-  youtubeItem.append(listItem)
+  listItem.text(youtubeName);
+  youtubeItem.append(listItem);
   list.append(youtubeItem);
   }
   $("#youtube-title").append(list);
 }
 
-$("#youTubebtn").on("click", function( ){
-  var input = $("#Search").val()
-  console.log("click ", input)
-  $("#youtube-title").empty()
-  $("#youtube-title").text(input)
-  filtersImplemented(input)
-  // youTubeAPI(input)
-  })
-  
-  
-console.log("top6")
+console.log("top5");
+
+var searchBtn = $("#searchBtn");
+
+searchBtn.ready(function(){
+  $('#Search').keydown(function(e){
+    if(e.keyCode === 13){
+      e.preventDefault();
+      searchMe();
+    }
+  });
+});
+
+function searchMe(){
+  var input = $("#Search").val();
+  console.log("searching: ", input);
+  $("#youtube-title").empty();
+  $("#youtube-title").text(input);
+  youTubeAPI(input);
+};
+
+searchBtn.click(searchMe);
+
+console.log("top6");
 
 // youtube API key
 const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
-const muskey = "1b483628365d407895a612635af439ad"
-console.log("top2")
+const muskey = "1b483628365d407895a612635af439ad";
+console.log("top2");
 
 
 //!Please don't delete anything below this :)
@@ -241,6 +258,6 @@ function filtersImplemented(e) {
   
 }
   //filtersImplemented(e); //!working DO NOT DELETE!!!!
-  var applyFiltersButton = $('#filterApplyButton')
+  var applyFiltersButton = $('#filterApplyButton');
   applyFiltersButton.on("click", filtersImplemented);
 
