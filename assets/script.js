@@ -25,7 +25,7 @@ function logLyric() {
       headers: {
         // allows us to bypass the CORS error, 
         // will need to replace temp api key before presentation (expires on sunday)
-        "x-cors-api-key": "temp_211e4d54773c2e03893b97b548ed8d74",
+        "x-cors-api-key": "temp_ff7769232ae92309ea6953784f170a83",
       }
     })
       .then(function (response) {
@@ -91,7 +91,7 @@ function displayMusicmatch() {
 //target the search button for a click event
 var youTubebtn = document.getElementById("youTubebtn");
 youTubebtn.addEventListener("click", youTubeAPI);
-console.log("youTubebtn")
+console.log("youTubebtn");
 
 
 function youTubeAPI() {
@@ -107,10 +107,10 @@ function youTubeAPI() {
   })
   .then(function (data) {
     console.log(data);
-    localStorage.setItem("youtubeSearch",JSON.stringify(data))
+    localStorage.setItem("youtubeSearch",JSON.stringify(data));
     displayYouTube(data);
   }).catch(e => {
-    console.log('here is the error', e)
+    console.log('here is the error', e);
   });
 }
 
@@ -123,34 +123,34 @@ function displayYouTube() {
   $("#youtube-title").empty();
   // this is the local storage that shows the the results from the search 
   var ytList = JSON.parse(localStorage.getItem("youtubeSearch"))
-  console.log(ytList)
+  console.log(ytList);
   var list = $("<ul>");
   // just pulling info from the youtube to a local var 
   var youtube_list = ytList.items
   for (let i = 0; i < youtube_list.length; i++) {
     var listItem = $("<li>");
-    var youtubeItem = $("<a>")
+    var youtubeItem = $("<a>");
     // Gets the link to navigate to a new tab
-    youtubeItem.attr("target","_blank")
+    youtubeItem.attr("target","_blank");
     var source = "https://www.youtube.com/watch?v=" + youtube_list[i].id.videoId
     // this is the link href 
-  youtubeItem.attr('href', source)
+  youtubeItem.attr('href', source);
   // this is what appears on the list to click on to go to the music match
   var youtube_video = youtube_list[i].snippet.title
   var youtubeName = "Video Name " + youtube_video
-  listItem.text(youtubeName)
-  youtubeItem.append(listItem)
+  listItem.text(youtubeName);
+  youtubeItem.append(listItem);
   list.append(youtubeItem);
   }
   $("#youtube-title").append(list);
 }
 
 $("#youTubebtn").on("click", function( ){
-  var input = $("#Search").val()
-  console.log("click ", input)
-  $("#youtube-title").empty()
-  $("#youtube-title").text(input)
-  filtersImplemented(input)
+  var input = $("#Search").val();
+  console.log("click ", input);
+  $("#youtube-title").empty();
+  $("#youtube-title").text(input);
+  filtersImplemented(input);
   // youTubeAPI(input)
   })
   
@@ -233,6 +233,6 @@ function filtersImplemented(e) {
   });
 }
   //filtersImplemented(e); //!working DO NOT DELETE!!!!
-  var applyFiltersButton = $('#filterApplyButton')
+  var applyFiltersButton = $('#filterApplyButton');
   applyFiltersButton.on("click", filtersImplemented);
 
