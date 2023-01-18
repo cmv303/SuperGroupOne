@@ -155,12 +155,12 @@ $("#youTubebtn").on("click", function( ){
   })
   
   
-console.log("top6")
+console.log("top6");
 
 // youtube API key
 const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
-const muskey = "1b483628365d407895a612635af439ad"
-console.log("top2")
+const muskey = "1b483628365d407895a612635af439ad";
+console.log("top2");
 
 
 //functions for filterPanel
