@@ -76,15 +76,15 @@
   <div class="col">
 
         
-    <label><input type="radio" name="filterByTrack" id="SearchTrack" priorvalue=""><span>Search by Track Name</span></label>
-        <label><input type="radio" name="filterByLyrics" id="SearchLyrics" priorvalue=""> <span>Search by Lyrics
+    <label><input type="radio" name="filterBy" id="SearchTrack" priorvalue=""><span>Search by Track Name</span></label>
+        <label><input type="radio" name="filterBy" id="SearchLyrics" priorvalue=""> <span>Search by Lyrics
 
         </span></label>
         <!-- <button class="waves-effect waves-light btn" id="filterApplyButton">Apply Filters</button> -->
 
-        <label><input type="radio" name="filterByVideo" id="searchByVideo" priorvalue=""> <span>Search for Videos
+        <label><input type="radio" name="filterBy" id="searchByVideo" priorvalue=""> <span>Search for Videos
         </span></label>
-        <label><input type="radio" name="filterByBoth" id="SearchBoth" priorvalue=""><span>Search All</span></label>
+        <label><input type="radio" name="filterBy" id="SearchBoth" priorvalue=""><span>Search All</span></label>
 
         
     </div>
@@ -139,8 +139,8 @@
   <p id="playlist-description"></p>
   <div id="playlist-container">
   </div>
-  <div id="previouslySearched"></div>
-  <button id="clear">clear search history</button>
+  <div id="previouslySearched" ></div>
+  <button  class="waves-effect waves-light btn" id="clear">clear search history</button>
 
   <footer class="page-footer">
     <div class="container">
