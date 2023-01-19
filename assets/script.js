@@ -11,11 +11,25 @@ var searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", logLyric);
 searchBtn.addEventListener("keypress", logLyric);
 
-//
+var inputBox = document.getElementById("Search");
+var lyric = "";
+
+if (localStorage.getItem("recently searched") == null) {
+  localStorage.setItem("recently searched", "[]");
+}
+
+let recentlySearched = JSON.parse(localStorage.getItem("recently searched"));
+
+setButtons();
+
 function logLyric() {
-  var inputBox = document.getElementById("Search");
-  var lyric = inputBox.value;
+  
+  lyric = inputBox.value;
+
   console.log(lyric);
+
+  addToRecentSearch();
+
   var mXm =
     "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
     lyric +
@@ -70,22 +84,24 @@ function displayMusicmatch() {
   // a new window and plays the video
   }
   $("#resultsList").append(list);
-  addToRecentSearch();
+  
+}
 }
 
 function addToRecentSearch() {
+  lyric = inputBox.value;
   let currentSearch = lyric;
-  if (localStorage.getItem("recently searched") == null) {
-    localStorage.setItem("recently searched", "[]");
-  }
 
-  let recentlySearched = JSON.parse(localStorage.getItem("recently searched"));
   recentlySearched.push(currentSearch);
 
   localStorage.setItem("recently searched", JSON.stringify(recentlySearched));
-  setButtons();
 
+  let newBtn = document.createElement("button");
+  newBtn.textContent = currentSearch;
+  previouslySearched.appendChild(newBtn);
+  
 
+}
 
 function setButtons() {
   for (let i = 0; i < recentlySearched.length; i++) {
@@ -96,8 +112,10 @@ function setButtons() {
     previouslySearched.appendChild(lyricBtn);
   }
 }
-}
-}
+
+
+
+
 
 
 // Examples so I don't forget
