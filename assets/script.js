@@ -197,6 +197,7 @@ function setButtons() {
 
     function logLyricAgain() {
       lyric = lyricBtn.textContent;
+      localStorage.setItem("current search term", lyric);
 
       var mXm =
         "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
