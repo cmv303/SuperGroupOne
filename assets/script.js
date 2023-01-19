@@ -25,8 +25,8 @@ setButtons();
 function logLyric() {
   lyric = inputBox.value;
 
-  console.log(lyric);
-  localStorage.setItem("current seach term", JSON.stringify(lyric));
+  console.log("current search term: ",lyric);
+  localStorage.setItem("current search term", JSON.stringify(lyric));
 
   addToRecentSearch();
 
@@ -105,11 +105,6 @@ function displayMusicmatch() {
 
 // https://www.youtube.com/watch?v=-WowH0liGfE
 
-//target the search button for a click event
-// var youTubebtn = document.getElementById("youTubebtn");
-// youTubebtn.addEventListener("click", youTubeAPI);
-// youTubebtn.addEventListener("keypress", youTubeAPI);
-// console.log("youTubebtn");
 
 function youTubeAPI() {
   var input = localStorage.getItem("current search term");
