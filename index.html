@@ -26,23 +26,18 @@
     </div>
   </nav>
 
-  <div class="row">
-    <div class="input-field col">
-      <input placeholder="Search Your LyricAlly" id="Search" type="text">
-      <button id="searchBtn" type="button" class="waves-effect waves-light btn">Get LyricAlly</button>
-      <label class="active" for="first_name2"></label>
-    </div>
-<div>
+  
+<!-- <div>
   <div class="input-field col"></div>
       <input placeholder="Search Video" id="Search" type="text">
       <button id="youTubebtn" type="button" class="waves-effect waves-light btn">Play</button>
       <label class="active" for="first_name2"></label>
   </div>
-</div>
+</div> -->
 
 
 
-  <ul id="slide-out" class="sidenav">
+  <!-- <ul id="slide-out" class="sidenav">
     <li>
       <div class="user-view">
         <div class="background">
@@ -51,18 +46,17 @@
         <a href="#user"><img class="circle" src="./assets/images/LyricAllyLogo.jpg"></a>
         <a href="#name"><span class="white-text name">LyricAlly</span></a>
         <a href="#email"><span class="white-text email">"https://github.com/Catalystix/SuperGroupOne"</span></a>
-        <!-- will update website when it is built on github -->
-      </div>
+        <-- will update website when it is built on github -->
+      <!-- </div>
     </li>
     <li>Previously Searched</li>
     <li><div class="divider"></div></li> 
-    <!-- attach history list here -->
-    <li><a class="subheader">LOCAL STORAGE STUFF</a></li>
-    <div id="previouslySearched"></div>
+    <-- attach history list here -->
+    <!-- <li><a class="subheader">LOCAL STORAGE STUFF</a></li> -->
     
-  </ul>
-  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">History</i></a>
-</header>
+  <!-- </ul>
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">History</i></a> --> 
+</header> 
 
   <a href="#top"></a>
   <div class="row" id="searchBar">
@@ -71,24 +65,39 @@
   
   <!-- a list of keywords from local storage displayed here -->
   
+  <div class="row">
+    <div class="input-field col s12">
+      <input placeholder="Search Your LyricAlly" id="Search" type="text">
+      </div>
+      </div>
+
   <div class="row" name="searchFiltersForm" id="searchFiltersForm" style="display:block;"
   class="filtersFormDefaultColor" href="#">
   <div class="col">
 
-        <label><input type="checkbox" name="filterByGenre" id="SearchGenre" priorvalue=""><span>Search Genre</span></label>
-
-        <label><input type="checkbox" name="filterByArtist" id="SearchArtist" priorvalue=""> <span>Search Artist
+        
+    <label><input type="radio" name="filterByTrack" id="SearchTrack" priorvalue=""><span>Search by Track Name</span></label>
+        <label><input type="radio" name="filterByLyrics" id="SearchLyrics" priorvalue=""> <span>Search by Lyrics
 
         </span></label>
-        <button class="waves-effect waves-light btn" id="filterApplyButton">Apply Filters</button>
+        <!-- <button class="waves-effect waves-light btn" id="filterApplyButton">Apply Filters</button> -->
 
-        <label><input type="checkbox" name="filterByLyrics" id="searchByLyrics" priorvalue=""> <span>Search Lyrics
+        <label><input type="radio" name="filterByVideo" id="searchByVideo" priorvalue=""> <span>Search for Videos
         </span></label>
+        <label><input type="radio" name="filterByBoth" id="SearchBoth" priorvalue=""><span>Search All</span></label>
 
+        
     </div>
     <ul>
       <li></li>
     </ul>
+  </div>
+
+  <div class="row">
+    <div class="input-field col">    
+      <button id="searchBtn" type="button" class="waves-effect waves-light btn">Get LyricAlly</button>
+      <label class="active" for="first_name2"></label>
+    </div>
   </div>
 
   
@@ -98,15 +107,13 @@
 
   <div class="row" id="videoArea">
     
-    <div class="col s4">
+    <div class="col s12">
       
-      <div class="card">Playlist: <span id="playlist-title"></span></div class="col s4">
-      </div>
-      <div class="col s4">
+    
         
-    <div class="card">Videolist: <span id="youtube-title"></span></div class="col s4">
-    </div>
-    <div class="col s4">
+    <!-- <div class="card">Videolist: <span id="youtube-title"></span></div class="col s4">
+    </div> -->
+    <div class="col s12">
       <div class="card" id="resultsList"> Results list: <span id="results-list"></span>
       <!-- display results from fetch requests -->
     </div>
@@ -132,6 +139,7 @@
   <p id="playlist-description"></p>
   <div id="playlist-container">
   </div>
+  <div id="previouslySearched"></div>
 
   <footer class="page-footer">
     <div class="container">
