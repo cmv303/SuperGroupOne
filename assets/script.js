@@ -107,7 +107,7 @@ function displayMusicmatch() {
 
 
 function youTubeAPI() {
-  var input = localStorage.getItem("current search term");
+  var input = localStorage.getItem("current search term")
   var youTube =
     "https://www.googleapis.com/youtube/v3/search?part=snippet&relevanceLanguage=en&topicId=/m/04rlf&q=" +
     input +
@@ -176,6 +176,7 @@ function addToRecentSearch() {
 
   function doItAgain() {
     lyric = newBtn.textContent;
+    localStorage.setItem("current search term", lyric);
 
     var mXm =
       "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
