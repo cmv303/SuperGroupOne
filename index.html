@@ -14,7 +14,7 @@
 
 <header>
   <nav>
-    <div class="nav-wrapper">
+    <section class="nav-wrapper">
       <div class="logo-Wrapper">
         <a href="#" class="brand-logo"> <img class="responsive-img" src="./assets/images/LyricAllyLogo.jpg"></a>
       </div>
@@ -23,10 +23,8 @@
         <li class="active"><a href="about.html">About</a></li>
         <li class="active"><a href="#contact">Contact</a></li>
       </ul>
-    </div>
+    </section>
   </nav>
-
-  
 <!-- <div>
   <div class="input-field col"></div>
       <input placeholder="Search Video" id="Search" type="text">
@@ -34,9 +32,6 @@
       <label class="active" for="first_name2"></label>
   </div>
 </div> -->
-
-
-
   <!-- <ul id="slide-out" class="sidenav">
     <li>
       <div class="user-view">
@@ -50,32 +45,25 @@
       <!-- </div>
     </li>
     <li>Previously Searched</li>
-    <li><div class="divider"></div></li> 
+    <li><div class="divider"></div></li>
     <-- attach history list here -->
     <!-- <li><a class="subheader">LOCAL STORAGE STUFF</a></li> -->
-    
   <!-- </ul>
-  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">History</i></a> --> 
-</header> 
-
+  <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">History</i></a> -->
+</header>
   <a href="#top"></a>
-  <div class="row" id="searchBar">
+  <section class="row" id="searchBar">
     <!-- will use the API/s within the search bar to display results -->
-  </div>
-  
+  </section>
   <!-- a list of keywords from local storage displayed here -->
-  
-  <div class="row">
+  <section class="row">
     <div class="input-field col s12">
       <input placeholder="Search Your LyricAlly" id="Search" type="text">
       </div>
-      </div>
-
-  <div class="row" name="searchFiltersForm" id="searchFiltersForm" style="display:block;"
+      </section>
+  <section class="row" name="searchFiltersForm" id="searchFiltersForm" style="display:block;"
   class="filtersFormDefaultColor" href="#">
-  <div class="col">
-
-        
+  <section class="col">
     <label><input type="radio" name="filterBy" id="SearchTrack" priorvalue=""><span>Search by Track Name</span></label>
         <label><input type="radio" name="filterBy" id="SearchLyrics" priorvalue=""> <span>Search by Lyrics
 
@@ -85,44 +73,36 @@
         <label><input type="radio" name="filterBy" id="searchByVideo" priorvalue=""> <span>Search for Videos
         </span></label>
         <label><input type="radio" name="filterBy" id="SearchBoth" priorvalue=""><span>Search All</span></label>
-
-        
-    </div>
+    </section>
     <ul>
       <li></li>
     </ul>
-  </div>
+  </section>
 
-  <div class="row">
-    <div class="input-field col">    
+  <section class="row">
+    <section class="input-field col">
       <button id="searchBtn" type="button" class="waves-effect waves-light btn">Get LyricAlly</button>
       <label class="active" for="first_name2"></label>
-    </div>
-  </div>
+    </section>
+  </section>
 
-  
-  <div id="searchBar">
+  <section id="searchBar">
     <!-- will use the API/s within the search bar to display results -->
-  </div>
+  </section>
 
-  <div class="row" id="videoArea">
-    
-    <div class="col s12">
-      
+  <section class="row" id="videoArea">
+    <section class="col s12">
       <div class="card" id="resultsList"> Results list: <span id="results-list"></span>
         <!-- display results from fetch requests -->
-        
-    </div> 
+    </div>
     <div class="col s12">
-
       <div class="card">Video list: <span id="youtube-title"></span></div class="col s4">
-
     </div>
   </div>
-</div>
+</section>
+  </section>
 
-  </div>
-  <div class="muzieknootjes">
+  <section class="muzieknootjes">
     <div class="noot-1">
       &#9835; &#9833;
     </div>
@@ -135,32 +115,31 @@
   <div class="noot-4">
     &#9834;
   </div>
-  </div>
+  </section>
   
   <p id="playlist-description"></p>
-  <div id="playlist-container">
-  </div>
-  <div id="previouslySearched" ></div>
+  <section id="playlist-container">
+  </section>
+  <section id="previouslySearched" ></section>
   <button  class="waves-effect waves-light btn" id="clear">clear search history</button>
 
   <footer class="page-footer">
-    <div class="container">
-      <div class="row">
+    <section class="container">
+      <section class="row">
         <div class="col l6 s12">
           <h5 class="white-text">LyricAlly</h5>
           <p class="grey-text text-lighten-4">Listen to your hearts content!</p>
         </div>
-        <div class="col l4 offset-l2 s12">
+        <section class="col l4 offset-l2 s12">
           <h5 class="white-text">Links</h5>
           <ul>
             <li><a class="grey-text text-lighten-3" href="https://github.com/Catalystix/SuperGroupOne">The Repo</a></li>
             <li><a class="grey-text text-lighten-3" href="https://catalystix.github.io/SuperGroupOne/">The Deployed Website</a></li>
             <li><a class="grey-text text-lighten-3" href="#top">Home</a></li>
-            
           </ul>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </section>
         </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
