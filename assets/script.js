@@ -20,6 +20,9 @@ if (localStorage.getItem("recently searched") == null) {
 
 let recentlySearched = JSON.parse(localStorage.getItem("recently searched"));
 
+let clearBtn = document.getElementById("clear");
+clearBtn.addEventListener("click", clearSearched);
+
 setButtons();
 
 function logLyric() {
@@ -99,7 +102,7 @@ function addToRecentSearch() {
   let newBtn = document.createElement("button");
   newBtn.textContent = currentSearch;
   previouslySearched.appendChild(newBtn);
-  
+
 
 }
 
@@ -111,6 +114,12 @@ function setButtons() {
     let previouslySearched = document.getElementById("previouslySearched")
     previouslySearched.appendChild(lyricBtn);
   }
+}
+
+// clears the search history and reloads the page
+function clearSearched() {
+  localStorage.removeItem("recently searched");
+  window.location.reload();
 }
 
 
@@ -137,10 +146,10 @@ function setButtons() {
 
 
 //target the search button for a click event
-var youTubebtn = document.getElementById("youTubebtn");
-youTubebtn.addEventListener("click", youTubeAPI);
-youTubebtn.addEventListener("keypress", youTubeAPI);
-console.log("youTubebtn");
+// var youTubebtn = document.getElementById("youTubebtn");
+// youTubebtn.addEventListener("click", youTubeAPI);
+// youTubebtn.addEventListener("keypress", youTubeAPI);
+// console.log("youTubebtn");
 
 
 function youTubeAPI() {
