@@ -97,6 +97,7 @@ function addToRecentSearch() {
   localStorage.setItem("recently searched", JSON.stringify(recentlySearched));
 
   let newBtn = document.createElement("button");
+  newBtn.setAttribute("class", "waves-effect waves-light btn");
   newBtn.textContent = currentSearch;
   previouslySearched.appendChild(newBtn);
   newBtn.addEventListener("click", doItAgain);
@@ -115,7 +116,7 @@ function addToRecentSearch() {
 function setButtons() {
   for (let i = 0; i < recentlySearched.length; i++) {
     let lyricBtn = document.createElement("button");
-    // lyricBtn.setAttribute("class", "lyricBtn");
+    lyricBtn.setAttribute("class", "waves-effect waves-light btn");
     lyricBtn.textContent = recentlySearched[i];
     let previouslySearched = document.getElementById("previouslySearched");
     previouslySearched.appendChild(lyricBtn);
