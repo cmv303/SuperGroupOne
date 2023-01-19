@@ -95,7 +95,7 @@ function displayMusicmatch() {
 // GET https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=Ks-_Mh1QhMc&type=video&key=[YOUR_API_KEY] HTTP/1.1
 
 // Hope's youtube API key:
-// const key = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4";
+const ytkey = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4";
 
 // LaShawn's youtube API key:
 // const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
@@ -112,7 +112,7 @@ function youTubeAPI() {
     "https://www.googleapis.com/youtube/v3/search?part=snippet&relevanceLanguage=en&topicId=/m/04rlf&q=" +
     input +
     "&type=video&key=" +
-    key;
+    ytkey;
   fetch(youTube)
     .then(function (response) {
       return response.json();
