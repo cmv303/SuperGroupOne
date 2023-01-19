@@ -37,6 +37,7 @@ function logLyric() {
 }
 //take input and fetch song data from musixmatch
 function fetchData(mXm) {
+  inputBox.value = "";
   fetch(mXm, {
     headers: {
       // allows us to bypass the CORS error,
@@ -98,6 +99,17 @@ function addToRecentSearch() {
   let newBtn = document.createElement("button");
   newBtn.textContent = currentSearch;
   previouslySearched.appendChild(newBtn);
+  newBtn.addEventListener("click", doItAgain);
+
+  function doItAgain() {
+    lyric = newBtn.textContent;
+
+    var mXm =
+      "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
+      lyric +
+      "&apikey=f5675484f5751c3529bca2ad13ec32fd";
+    fetchData(mXm);
+  }
 }
 
 function setButtons() {
