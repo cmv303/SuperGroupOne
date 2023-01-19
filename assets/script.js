@@ -26,7 +26,7 @@ function logLyric() {
   function fetchData(mXm) {
     fetch(mXm, {
       headers: {
-        // allows us to bypass the CORS error, 
+        // allows us to bypass the CORS error,
         // will need to replace temp api key before presentation (expires on sunday)
         "x-cors-api-key": "temp_ff7769232ae92309ea6953784f170a83",
       }
