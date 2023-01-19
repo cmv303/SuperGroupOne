@@ -36,7 +36,7 @@ function logLyric() {
         return response.json();
       })      .then(function (data) {
         console.log(data.message.body);
-        localStorage.setItem("musicSearch",JSON.stringify(data))
+        localStorage.setItem("musicSearch",JSON.stringify(data));
         displayMusicmatch()
       })
     }
@@ -70,7 +70,34 @@ function displayMusicmatch() {
   // a new window and plays the video
   }
   $("#resultsList").append(list);
-}}
+  addToRecentSearch();
+}
+
+function addToRecentSearch() {
+  let currentSearch = lyric;
+  if (localStorage.getItem("recently searched") == null) {
+    localStorage.setItem("recently searched", "[]");
+  }
+
+  let recentlySearched = JSON.parse(localStorage.getItem("recently searched"));
+  recentlySearched.push(currentSearch);
+
+  localStorage.setItem("recently searched", JSON.stringify(recentlySearched));
+  setButtons();
+
+
+
+function setButtons() {
+  for (let i = 0; i < recentlySearched.length; i++) {
+    let lyricBtn = document.createElement("button");
+    // lyricBtn.setAttribute("class", "lyricBtn");
+    lyricBtn.textContent = recentlySearched[i];
+    let previouslySearched = document.getElementById("previouslySearched")
+    previouslySearched.appendChild(lyricBtn);
+  }
+}
+}
+}
 
 
 // Examples so I don't forget
