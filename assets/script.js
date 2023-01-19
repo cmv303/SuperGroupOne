@@ -26,6 +26,7 @@ function logLyric() {
   lyric = inputBox.value;
 
   console.log(lyric);
+  localStorage.setItem("current seach term", JSON.stringify(lyric));
 
   addToRecentSearch();
 
@@ -86,59 +87,8 @@ function displayMusicmatch() {
     // a new window and plays the video
   }
   $("#resultsList").append(list);
-}
 
-function addToRecentSearch() {
-  lyric = inputBox.value;
-  let currentSearch = lyric;
-
-  recentlySearched.push(currentSearch);
-
-  localStorage.setItem("recently searched", JSON.stringify(recentlySearched));
-
-  let newBtn = document.createElement("button");
-  newBtn.textContent = currentSearch;
-  newBtn.setAttribute("class", "waves-effect waves-light btn");
-  previouslySearched.appendChild(newBtn);
-  newBtn.addEventListener("click", doItAgain);
-
-  function doItAgain() {
-    lyric = newBtn.textContent;
-
-    var mXm =
-      "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
-      lyric +
-      "&apikey=f5675484f5751c3529bca2ad13ec32fd";
-    fetchData(mXm);
-  }
-}
-
-function setButtons() {
-  for (let i = 0; i < recentlySearched.length; i++) {
-    let lyricBtn = document.createElement("button");
-    lyricBtn.setAttribute("class", "waves-effect waves-light btn");
-    // lyricBtn.setAttribute("class", "lyricBtn");
-    lyricBtn.textContent = recentlySearched[i];
-    let previouslySearched = document.getElementById("previouslySearched");
-    previouslySearched.appendChild(lyricBtn);
-    lyricBtn.addEventListener("click", logLyricAgain);
-
-    function logLyricAgain() {
-      lyric = lyricBtn.textContent;
-
-      var mXm =
-        "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
-        lyric +
-        "&apikey=f5675484f5751c3529bca2ad13ec32fd";
-      fetchData(mXm);
-    }
-  }
-}
-
-// clears the search history and reloads the page
-function clearSearched() {
-  localStorage.removeItem("recently searched");
-  window.location.reload();
+  youTubeAPI();
 }
 
 // Examples so I don't forget
@@ -148,7 +98,7 @@ function clearSearched() {
 // const key = "AIzaSyA4D1jpi2mpVlAlUO9TWKG2mxPCDFda1l4";
 
 // LaShawn's youtube API key:
-// const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c"
+// const key = "AIzaSyD2OrpKeJ6CUDPO-oZ5KB2mmLdWD0PSh8c";
 
 // this function currently returns youtube videos matching the user input,
 // can we store the musixmatch data and run through here so youtube vids match musixmatch songs?
@@ -162,9 +112,9 @@ function clearSearched() {
 // console.log("youTubebtn");
 
 function youTubeAPI() {
-  var input = document.getElementById("Search").value;
+  var input = localStorage.getItem("current search term");
   var youTube =
-    "https://www.googleapis.com/youtube/v3/search?part=snippet&q=" +
+    "https://www.googleapis.com/youtube/v3/search?part=snippet&relevanceLanguage=en&topicId=/m/04rlf&q=" +
     input +
     "&type=video&key=" +
     key;
@@ -180,6 +130,7 @@ function youTubeAPI() {
     .catch((e) => {
       console.log("here is the error", e);
     });
+    displayYouTube();
 }
 
 //display youtube data
@@ -212,6 +163,61 @@ function displayYouTube() {
   }
   $("#youtube-title").append(list);
 }
+
+function addToRecentSearch() {
+  lyric = inputBox.value;
+  let currentSearch = lyric;
+
+  recentlySearched.push(currentSearch);
+
+  localStorage.setItem("recently searched", JSON.stringify(recentlySearched));
+
+  let newBtn = document.createElement("button");
+  newBtn.setAttribute("class", "waves-effect waves-light btn");
+  newBtn.textContent = currentSearch;
+  newBtn.setAttribute("class", "waves-effect waves-light btn");
+  previouslySearched.appendChild(newBtn);
+  newBtn.addEventListener("click", doItAgain);
+
+  function doItAgain() {
+    lyric = newBtn.textContent;
+
+    var mXm =
+      "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
+      lyric +
+      "&apikey=f5675484f5751c3529bca2ad13ec32fd";
+    fetchData(mXm);
+  }
+}
+
+function setButtons() {
+  for (let i = 0; i < recentlySearched.length; i++) {
+    let lyricBtn = document.createElement("button");
+    lyricBtn.setAttribute("class", "waves-effect waves-light btn");
+    lyricBtn.textContent = recentlySearched[i];
+    let previouslySearched = document.getElementById("previouslySearched");
+    previouslySearched.appendChild(lyricBtn);
+    lyricBtn.addEventListener("click", logLyricAgain);
+
+    function logLyricAgain() {
+      lyric = lyricBtn.textContent;
+
+      var mXm =
+        "https://proxy.cors.sh/https://api.musixmatch.com/ws/1.1/track.search?q_lyrics=" +
+        lyric +
+        "&apikey=f5675484f5751c3529bca2ad13ec32fd";
+      fetchData(mXm);
+    }
+  }
+}
+
+// clears the search history and reloads the page
+function clearSearched() {
+  localStorage.removeItem("recently searched");
+  window.location.reload();
+}
+
+
 
 console.log("top5");
 
