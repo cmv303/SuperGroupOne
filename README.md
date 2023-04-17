@@ -25,7 +25,7 @@ To see deployed site, click here: https://catalystix.github.io/SuperGroupOne/
 
 
 ## Wirefreame
-![Music App Childish Wireframe](https://user-images.githubusercontent.com/110114608/210908952-69124648-da54-4291-a90e-2262e22405fb.png)
+
 
 
 ## Authors
