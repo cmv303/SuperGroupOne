@@ -19,17 +19,13 @@ Get your LyricAlly going!
 <img width="1410" alt="demo of LyricAlly's working page" src="https://user-images.githubusercontent.com/115678318/213558819-3250c93d-11c3-4c9f-8c34-6b9d38afd162.png">
 
 
-
 ## Deployment
 To see deployed site, click here: https://catalystix.github.io/SuperGroupOne/
 
 
-## Wirefreame
-
-
-
 ## Authors
 Drew Greenblatt, Alexis Joyner, Hope Mansfield, Camila Moreiras, Scott Swiger, LaShawn WanaMaker
+
 
 ## License
 Please refer to license in Repo.
