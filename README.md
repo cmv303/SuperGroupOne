@@ -29,12 +29,7 @@ To see deployed site, click here: https://catalystix.github.io/SuperGroupOne/
 
 
 ## Authors
-- Hope Mansfield
-- Alexis Joyner
-- Drew Greenblatt
-- LaShawn WanaMaker
-- Scott Swiger
-- Camila Moreiras
+Drew Greenblatt, Alexis Joyner, Hope Mansfield, Camila Moreiras, Scott Swiger, LaShawn WanaMaker
 
 ## License
 Please refer to license in Repo.
